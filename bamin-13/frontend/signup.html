@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/signup.css">
+    <link rel="stylesheet" href="./css/alert.css">
     <title>Signup page</title>
 </head>
 <body>
@@ -14,14 +15,17 @@
         <form action="" class="signup-form">
             <div>필수 정보를 입력해주세요.</div>
             <input type="text" id="id" placeholder="아이디* (4~20자)" class="form-flex-item">
-            <div id="id-info-message" class="id-error">비밀번호는 영문과 숫자를 포함하여 8~20자로 입력해주세요.</div>
+            <div id="id-alert" class="alert-message"></div>
             <input type="text" id="password" placeholder="비밀번호* (영문+숫자,8~20자)" class="form-flex-item">
+            <div id="password-alert" class="alert-message">비밀번호는 영문과 숫자를 포함하여 8~20자로 입력해주세요.</div>
             <input type="text" id="password-chk" placeholder="비밀번호 재확인*" class="form-flex-item">
+            <div id="password-chk-alert" class="alert-message">위 비밀번호와 일치하지 않습니다. 다시 입력해주세요.</div>
             <div class="email-flex-container">
-                <input type="text" id="email-font" placeholder="이메일 앞자리*" class="email-flex-item">
+                <input type="text" id="email-front" placeholder="이메일 앞자리*" class="email-flex-item">
                 <p id="email-at">@</p>
                 <input type="text" id="email-end" placeholder="이메일 뒷자리*" class="email-flex-item">
             </div>
+            <div id="email-alert" class="alert-message">이메일 주소를 입력해 주세요.</div>
             <select id="email-select" class="form-flex-item">
                 <option value="">이메일 선택</option>
                 <option value="">직접입력</option>
@@ -34,6 +38,12 @@
                 <input type="text" id="phone" placeholder="휴대폰*" class="auth-flex-item" >
                 <input type="submit" value="인증받기" id="auth-btn" class="auth-flex-item">
             </div>
+            <div style="margin:0.5em auto"></div>
+            <div id="auth" class="auth-container">
+                <input type="text" id="auth-number-input" placeholder="인증번호 6자리 입력" class="auth-flex-item" >
+                <input type="submit" value="확인" id="number-submit-btn" class="auth-flex-item">
+            </div>
+            <div id="number-alert" class="alert-message">인증번호를 입력해주세요.</div>
             <div style="margin:0.5em auto"></div>
             <div class="address-flex-chk-container">
                 <input type="checkbox" name="" id="select-info-chk">

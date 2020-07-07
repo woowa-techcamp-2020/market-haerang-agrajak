@@ -90,11 +90,11 @@ box-sizing: border-box;
     padding:7px;
 }
 
-#phone, #postcode{
+#phone, #postcode, #auth-number-input{
     width:270px;
 }
 
-#auth-btn, #address-btn{
+#auth-btn, #address-btn,#number-submit-btn{
     width:120px;
     background:none;
     color:#BFC4D0;
