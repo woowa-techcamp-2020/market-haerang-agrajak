@@ -1,0 +1,222 @@
+input, select
+{
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+}
+
+.wrapper{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    min-width:100vw;
+    min-height: 100vh;
+ 
+}
+
+.signup-container {
+    display:flex;
+    flex-direction:column;
+    border:1px solid black;
+   
+}
+
+.signup-container h1{
+    text-align:center;
+    color:#2CC1BC;
+}
+
+.signup-form{
+    display:flex;
+    flex-direction:column;
+    min-height:600px;
+    font-size:1em;
+    padding:20px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.signup-form div{
+    
+    align-self:flex-start;
+    margin: 0 2em;
+
+}
+
+.form-flex-item, #email-select, .address-flex-item{
+    
+    height:47px;
+    width:400px;
+    border: 1px solid #DEE2EB;
+    margin: 1em 2em;
+    padding:7px;
+}
+
+.email-flex-container{
+    display:flex;
+    height:47px;
+    width:400px;
+    justify-content: space-between;
+    margin: 1em 2em;
+}
+
+.email-flex-item{
+    width:180px;
+    border: 1px solid #DEE2EB;
+    padding:7px;
+    
+}
+
+#email-at{
+    margin: auto 0;
+}
+
+.email-select option{
+    font-size:1em;
+    padding:7px;
+}
+
+.auth-container{
+    display:flex;
+    height:47px;
+    width:400px;
+    justify-content: space-between;
+    margin:1em 2em;
+
+}
+
+.auth-flex-item, .postcode-flex-item{
+    border: 1px solid #DEE2EB;
+    padding:7px;
+}
+
+#phone, #postcode{
+    width:270px;
+}
+
+#auth-btn, #address-btn{
+    width:120px;
+    background:none;
+    color:#BFC4D0;
+    font-weight: bold;
+    border:1px solid #BFC4D0;
+}
+
+#password-chk,#name {
+    margin-bottom:2em;
+}
+
+#email-select{
+    margin-top:20px;
+}
+.address-flex-chk-container{
+    width:400px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+   
+}
+
+.address-flex-chk-container input{
+    width:20px;
+    height:20px;
+    margin:0;
+}
+
+.address-flex-chk-container p{
+    padding: 0 5px;
+    
+}
+
+.address-flex-chk-container ul{
+    text-decoration: underline;
+    padding: 0 10px;
+    color:#BFC4D0;
+    font-size:12px;
+}
+
+.postcode-flex-container, .address-flex-container{
+    display:flex;
+    height:47px;
+    width:400px;
+    justify-content: space-between;
+}
+
+.address-flex-item{
+    margin:0.5em 2em;
+}
+
+#signup-finish-btn{
+    background:#1A7CFE;
+    color:#fff;
+    font-weight: bold;
+    font-size:16px;
+}
+
+.terms-flex-container,.essential-flex-container,
+.advertise-flex-container{
+    width:400px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+}
+
+.terms-flex-container input, .essential-flex-container input,
+.advertise-flex-container input{
+    width:20px;
+    height:20px;
+    margin:0;
+}
+
+.terms-flex-container p,.essential-flex-container p,
+.advertise-flex-container p{
+    padding: 0 5px;
+    
+}
+
+.essential-terms-info ul{
+    text-decoration: underline;
+    padding: 0 10px;
+    color:#BFC4D0;
+    font-size:12px;
+}
+
+.essential-terms-info,.advertise-terms-info {
+    width:400px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.essential-terms-info ul{
+    margin-top:0;
+    color:#919191;
+    font-size:14px;
+}
+
+.advertise-terms-info{
+   
+    color:#BFC4D0;
+    font-size:12px;
+    color:#919191;
+    justify-content: flex-start;
+
+}
+
+.advertise-terms-info li:nth-child(1){
+    text-decoration:none;
+    padding: 0 4px;
+    height:47px;
+
+}
+
+.advertise-terms-info li:nth-child(2){
+    list-style-type:none;
+    padding:0 4px;
+    height:47px;
+    text-decoration:underline;
+}
+
+
+
+
