@@ -1,6 +1,6 @@
 
 const formElement = document.querySelector('form')
-const checkList = ['id', 'password', 'name']
+const checkList = ['id', 'password', 'name','password-chk']
 
 
 // 이벤트 위임 
@@ -8,8 +8,9 @@ const checkList = ['id', 'password', 'name']
 formElement.addEventListener('focusout', (event)=>{
     const {target} = event
     // 현재의 타겟이 id, password, name 중에 하나라면 
+    console.log(target.id)
+    let validation = true;
     if(checkList.includes(target.id)){
-        let validation = true;
         // 유효성 검사
         if(target.id==='id'){
             validation = validateId(target.value);
@@ -17,7 +18,10 @@ formElement.addEventListener('focusout', (event)=>{
             validation = validatePassword(target.value);
         }else if(target.id==='name') {
             validation = validateName(target.value);
-        }       
+        }else if(target.id==='password-chk'){
+            const passwd=document.getElementById('password').value;
+            validation=validatePasswordChk(passwd,target.value);
+        }
     }
 
         // 유효성 검사 결과에 따라 경고창 css를 설정해 줄 클래스를 추가 혹은 삭제한다
@@ -43,4 +47,4 @@ formElement.addEventListener('focusout', (event)=>{
             }
         }
     }
-})
+)
