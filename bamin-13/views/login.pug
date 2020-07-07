@@ -1,4 +1,22 @@
-extends layout
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='/stylesheets/main.css')
+  script(src='/scripts/main.js' defer='')
+body
+    .wrapper
+    form#login-container
+      input#id(placeholder='아이디')
+      input#password(placeholder='비밀번호')
+      #login-save-id
+        input(type="checkbox") 
+        label 아이디 저장
+      #login-addons
+        a.addons#search 아이디 / 비밀번호 찾기 
+        label | 
+        a.addons#signup(href='/signup') 회원가입
+      
+      button(onclick="location.href='/login'" type='button') 사장님 로그인
 
-block content
-  p 로그인 페이지 입니다.
+    

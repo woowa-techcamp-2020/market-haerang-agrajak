@@ -1,4 +1,27 @@
-extends layout
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='/stylesheets/complete.css')
+  script(src='/scripts/main.js' defer='')
+body
+    .wrapper
+    form#complete-container
+      a(href='/') 메인으로 
+      #complete-info-container
+        .row
+          span.type 이름
+          span.value 김철수
+        .row
+          span.type 아이디
+          span.value chulsoo
+        .row
+          span.type 이메일
+          span.value chulsoo@kim.com
+        .row
+          span.type 핸드폰
+          span.value 010-2323-1231
+      small 위 내용은 #[a 내 정보 관리]에서 수정하실 수 있습니다.
+      
 
-block content
-  p 회원가입 완료 페이지입니다.
+    
