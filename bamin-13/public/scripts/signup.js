@@ -22,7 +22,6 @@ formElement.addEventListener('focusout', (event)=>{
         const alertElement = document.getElementById(target.id+'-alert')
         if(!validation){
             if(!alertElement.classList.contains('is-visible')){
-                alertElement.innerText= `${target.id}에러임!`
                 alertElement.classList.add('is-visible')
             }
         }
@@ -32,14 +31,4 @@ formElement.addEventListener('focusout', (event)=>{
             }
         }
     }
-    const id = event.target.value
-    const ans = validateId(id);
-    console.log(ans)
-    if(!ans){
-        const idAlertElement = document.getElementById('id-alert')
-        idAlertElement.innerText = '히히 쳍스트'
-        idAlertElement.classList.add('is-visible')
-    }
-    console.log('짠!')
-
 })

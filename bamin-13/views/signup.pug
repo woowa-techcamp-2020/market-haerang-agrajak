@@ -3,8 +3,8 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   link(rel='stylesheet' href='/stylesheets/signup.css')
-  script(src='/scripts/utils.js' defer)
-  script(src='/scripts/signup.js' defer)
+  script(src='/scripts/utils.js' defer='')
+  script(src='/scripts/signup.js' defer='')
   title Signup page
 .wrapper
   .signup-container
@@ -15,7 +15,7 @@ head
     form.signup-form(action='')
       div &#xD544;&#xC218; &#xC815;&#xBCF4;&#xB97C; &#xC785;&#xB825;&#xD574;&#xC8FC;&#xC138;&#xC694;.
       input#id.form-flex-item(type='text' placeholder='아이디* (4~20자)')
-      #id-alert.alert-message
+      #id-alert.alert-message &#xC544;&#xC774;&#xB514;&#xB294; 4-20&#xC790;&#xC758; &#xC601;&#xC18C;&#xBB38;&#xC790;, &#xC22B;&#xC790;, &#xD2B9;&#xC218;&#xAE30;&#xD638;(-, _)&#xB9CC; &#xC0AC;&#xC6A9;&#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.
       input#password.form-flex-item(type='text' placeholder='비밀번호* (영문+숫자,8~20자)')
       #password-alert.alert-message &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB294; &#xC601;&#xBB38;&#xACFC; &#xC22B;&#xC790;&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xC5EC; 8~20&#xC790;&#xB85C; &#xC785;&#xB825;&#xD574;&#xC8FC;&#xC138;&#xC694;.
       input#password-chk.form-flex-item(type='text' placeholder='비밀번호 재확인*')
@@ -32,7 +32,7 @@ head
         option(value='') gmail.com
         option(value='') daum.net
       input#name.form-flex-item(type='text' placeholder='이름*')
-      #name-alert.alert-message
+      #name-alert.alert-message &#xC774;&#xB984;&#xC740; &#xC601;&#xC5B4;&#xC640; &#xD55C;&#xAE00;&#xB9CC; &#xC0AC;&#xC6A9;&#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.
       #auth.auth-container
         input#phone.auth-flex-item(type='text' placeholder='휴대폰*')
         input#auth-btn.auth-flex-item(type='submit' value='인증받기')
