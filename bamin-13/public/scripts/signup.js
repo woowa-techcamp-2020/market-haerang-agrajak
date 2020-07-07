@@ -22,7 +22,7 @@ formElement.addEventListener('focusout', (event)=>{
             const passwd=document.getElementById('password').value;
             validation=validatePasswordChk(passwd,target.value);
         }
-    }
+    }else return;
 
         // 유효성 검사 결과에 따라 경고창 css를 설정해 줄 클래스를 추가 혹은 삭제한다
         const actualElement=document.getElementById(target.id);
