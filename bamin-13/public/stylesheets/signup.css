@@ -217,15 +217,17 @@ box-sizing: border-box;
     text-decoration:underline;
 }
 
+.alert-message:not(.is-visible){
+    display:none;
+}
 .alert-message{
     color:red;
     font-size:14px;
     padding:7px;
 }
 
-.is-hidden{
-    display:none;
+.is-visible {
+    display: block
 }
-
 
 

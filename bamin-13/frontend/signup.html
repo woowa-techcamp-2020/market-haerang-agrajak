@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/signup.css">
-    <link rel="stylesheet" href="./css/alert.css">
+    <link rel="stylesheet" href="/stylesheets/signup.css">
+    <script src="/scripts/utils.js" defer></script>
+    <script src="/scripts/signup.js" defer></script>
     <title>Signup page</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
         <form action="" class="signup-form">
             <div>필수 정보를 입력해주세요.</div>
             <input type="text" id="id" placeholder="아이디* (4~20자)" class="form-flex-item">
-            <div id="id-alert" class="alert-message"></div>
+            <div id="id-alert" class="alert-message">아이디는 4-20자의 영소문자, 숫자, 특수기호(-, _)만 사용가능합니다.</div>
             <input type="text" id="password" placeholder="비밀번호* (영문+숫자,8~20자)" class="form-flex-item">
             <div id="password-alert" class="alert-message">비밀번호는 영문과 숫자를 포함하여 8~20자로 입력해주세요.</div>
             <input type="text" id="password-chk" placeholder="비밀번호 재확인*" class="form-flex-item">
@@ -34,6 +35,7 @@
                 <option value="">daum.net</option>
             </select>
             <input type="text"id="name" placeholder="이름*" class="form-flex-item">
+            <div id="name-alert" class="alert-message">이름은 영어와 한글만 사용가능합니다.</div>
             <div id="auth" class="auth-container">
                 <input type="text" id="phone" placeholder="휴대폰*" class="auth-flex-item" >
                 <input type="submit" value="인증받기" id="auth-btn" class="auth-flex-item">

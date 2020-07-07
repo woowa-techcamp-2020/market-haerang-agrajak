@@ -12,9 +12,6 @@ function validatePassword(password){
   if(password.length < 8 || password.length > 20) return false;
   return /^([A-Za-z0-9]+)$/.test(password)
 }
-module.exports = {
-  validateId, validatePassword, validateName
-}
 /*
 console.log(validateId('1231dDSFSDF'))
 console.log(validateId('1231-123'))
