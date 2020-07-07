@@ -217,6 +217,12 @@ box-sizing: border-box;
     text-decoration:underline;
 }
 
+.alert-message{
+    display:none;
+    color:red;
+    font-size:14px;
+    padding:7px;
+}
 
 
 
