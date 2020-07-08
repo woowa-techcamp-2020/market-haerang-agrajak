@@ -15,7 +15,7 @@ function validatePassword(password){
 
 function validatePasswordChk(password,passwordChk){
   if(password!==passwordChk)return false;
-  else return true;
+  return true;
 }
 
 
