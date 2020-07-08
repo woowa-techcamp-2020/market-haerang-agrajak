@@ -1,7 +1,18 @@
-
-const formElement = document.querySelector('form');
 const checkList = ['id', 'password', 'name','password-chk'];
 
+const formElement = document.querySelector('form');
+const modal = document.querySelector('.modal-container');
+const closeModalBtn = document.getElementById('close-modal-btn')
+const modalOverlay = document.querySelector('.modal-overlay');
+const authBtn = document.getElementById('auth-btn');
+const openPostalButton = document.querySelector('#address-btn')
+const codeBox = document.querySelector('#code-box');
+const numberInputText = document.querySelector('#auth-number-input');
+const numberAlert = document.getElementById('number-alert');
+const addressCheckBox = document.getElementById('select-info-chk')
+const essentialCheckBox = document.getElementById('essential-info-chk')
+const termsAgreeCheckBox = document.getElementById('terms-agree-chk')
+const advertiseCheckBox = document.getElementById('advertise-info-chk')
 const postalBox = new daum.Postcode({
     oncomplete: function(data) {
         const {zonecode, address} = data;
@@ -10,12 +21,10 @@ const postalBox = new daum.Postcode({
     }
 })
 
-const openPostalButton = document.querySelector('#address-btn')
 openPostalButton.addEventListener('click', ()=>{
     postalBox.open();
 })
 
-const addressCheckBox = document.getElementById('select-info-chk')
 function setAddressBoxEnabled(value){
     const addressBox = document.getElementById('postcode-box')
     addressBox.childNodes.forEach(node=>{
@@ -24,10 +33,16 @@ function setAddressBoxEnabled(value){
         })
     })
 }
+
 setAddressBoxEnabled(false);
 addressCheckBox.addEventListener('input', (event)=>{
     const {checked} = event.target
     setAddressBoxEnabled(checked);
+})
+termsAgreeCheckBox.addEventListener('input', (event)=>{
+    const {checked} = event.target
+    essentialCheckBox.checked = checked
+    advertiseCheckBox.checked = checked
 })
 
 // 이벤트 위임 
@@ -78,3 +93,53 @@ function submit(){
     // TODO: validation 한번 더하기 (빈 칸 있으면 찾아내기) -> Focus 해주기
     formElement.submit();
 }
+var countFinishedAt = 0;
+
+function renderCountDown(){
+    const timer = document.getElementById('auth-timer')
+    let sec = parseInt((countFinishedAt - (+new Date())) / 1000);
+    let min = String(parseInt(sec/60)+100).substr(1,2); 
+    sec = String(sec%60+100).substr(1,2)
+    timer.innerText = `${min}:${sec}`
+    if(sec>0){
+        setTimeout(renderCountDown, 500);
+    }
+    else {
+        timer.innerText = ''
+    }
+}
+
+
+function requestAuthCode(){
+    const http = new XMLHttpRequest();
+    const phone = document.getElementById('phone').value;
+    if(!http) return;
+    http.onload = function(){
+        if(http.status === 200 || http.status == 201){
+            const {authCode, invalidAt} = JSON.parse(http.responseText)['data']
+            openModal(authCode);
+            countFinishedAt = invalidAt;
+        }
+    };
+    http.open('POST', '/api/phone-auth');
+    http.setRequestHeader('Content-Type', 'application/json');
+    http.send(JSON.stringify({phone}));
+}
+authBtn.addEventListener('click', requestAuthCode);
+
+const openModal=(value)=>{
+    modal.classList.remove('hidden');
+    document.getElementById('modal-auth-code').innerText = value;
+}
+
+const closeModal=()=>{
+    modal.classList.add('hidden');
+    codeBox.classList.remove('hidden');
+    numberAlert.classList.add('is-visible');
+    numberInputText.classList.add('red-box');
+    renderCountDown()
+}
+
+//authBtn.addEventListener('click',openModal);
+closeModalBtn.addEventListener('click',closeModal);
+modalOverlay.addEventListener('click',closeModal);

@@ -30,12 +30,11 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   const {phone} = req.body;
   const authCode = generateAuthCode();
-
+  const invalidAt = +new Date() + 120000 // (millisecs)
   phoneAuthMap.set(phone, {
-    authCode,
-    invalidAt: +new Date() + 120000 // (millisecs)
+    authCode, invalidAt
   })
-  res.send(success(200, MSG.AUTH_PUBLISHED, authCode));
+  res.send(success(200, MSG.AUTH_PUBLISHED, {authCode, invalidAt}));
 });
 
 module.exports = router;

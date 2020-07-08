@@ -80,6 +80,7 @@ box-sizing: border-box;
 
 .auth-container{
     display:flex;
+    position: relative;
     height:47px;
     width:400px;
     justify-content: space-between;
@@ -240,7 +241,11 @@ box-sizing: border-box;
     font-size:14px;
     padding:7px;
 }
-
+#auth-timer {
+    position:absolute;
+    top: 15px;
+    right: 15px;
+}
 .is-visible {
     display: block
 }
