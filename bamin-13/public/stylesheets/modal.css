@@ -44,6 +44,11 @@
 
 }
 
+#a,#b
+{
+    wid,hei
+}
+
 #close-modal-btn{
     background:#1A7CFE;
     border:none;

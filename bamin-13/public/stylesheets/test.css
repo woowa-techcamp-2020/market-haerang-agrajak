@@ -1,0 +1,135 @@
+input, select
+{
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+}
+
+.wrapper{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    min-width:100vw;
+    min-height: 100vh;
+ 
+}
+
+.signup-container {
+    display:flex;
+    flex-direction:column;
+    border:1px solid black;
+   
+}
+
+.signup-container h1{
+    text-align:center;
+    color:#2CC1BC;
+}
+
+.signup-form{
+    display:flex;
+    flex-direction:column;
+    min-height:600px;
+    font-size:1em;
+    padding:20px;
+    justify-content:center;
+    align-items:flex-start;
+}
+
+/* 첫 번째 indentation div */
+.signup-form > div{
+    margin: 0 2em;
+}
+
+.form-flex-item{
+    
+    height:47px;
+    width:420px;
+    border: 1px solid #DEE2EB;
+    margin:0.5em 0;
+    padding:7px;
+}
+
+
+.flex-container{
+    display:flex;
+    height:47px;
+    width:420px;
+    justify-content: space-between;
+    margin: 0.5em 0;
+}
+
+.email-flex-item{
+    width:190px;
+    padding:7px;
+    border: 1px solid #DEE2EB;
+}
+
+.flex-item-2-input{
+    height:47px;
+    width:300px;
+    border: 1px solid #DEE2EB;
+    /* margin:0.5em 0; */
+    padding:7px;
+}
+
+.flex-item-2-btn{
+    height:47px;
+    width:110px;
+    color:#BFC4D0;
+    font-weight: bold;
+    border:1px solid #BFC4D0;
+    cursor:pointer;
+    text-align:center;
+    /* margin:0.5em 0; */
+}
+
+#code-box .flex-container{
+    position: relative;
+}
+
+#auth-timer{
+    position:absolute;
+    top:17px;
+    right:130px;
+}
+
+.flex-container-2{
+    display:flex;
+    height:47px;
+    width:420px;
+    align-items: center;
+}
+
+.flex-container-2 input{
+    height:1.5em;
+    width:1.5em;
+}
+
+.flex-container-2 p{
+    padding:7px;
+    margin:0;
+}
+
+#postcode-box{
+    display:flex;
+    flex-direction:column;
+}
+
+#terms p{
+    font-weight:bold;
+}
+
+#essential-detail .flex-container-2{
+    justify-content: flex-end;
+}
+
+#advertise-terms-info li{
+    margin:0 1em;
+}
+
+#signup-finish-btn{
+    color:#fff;
+    background:#1A7CFE;
+    font-size:16px;
+}
