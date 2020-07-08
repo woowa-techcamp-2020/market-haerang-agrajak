@@ -6,17 +6,20 @@ head
   script(src='/scripts/main.js' defer='')
 body
     .wrapper
-    form#login-container(action='/api/users/login' method='post')
-      input#id(name="id" placeholder='아이디')
-      input#password(name="password" placeholder='비밀번호')
-      #login-save-id
-        input(type="checkbox") 
-        label 아이디 저장
-      #login-addons
-        a.addons#search 아이디 / 비밀번호 찾기 
-        label | 
-        a.addons#signup(href='/signup') 회원가입
-      
-      input(type='submit' value='사장님 로그인') 
+    form.login-container(action='/api/users/login' method='post')
+      .row
+        input.form#id(name="id" placeholder='아이디')
+      .row
+        input.form#password(name="password" placeholder='비밀번호')
+      .row.has-addons
+        .addons
+          input(type="checkbox") 
+          label 아이디 저장
+        .addons
+          a.addons#search 아이디 / 비밀번호 찾기 
+          a.addons | 
+          a.addons#signup(href='/signup') 회원가입
+      .row
+        input.large-btn(type='submit' value='로그인') 
 
     
