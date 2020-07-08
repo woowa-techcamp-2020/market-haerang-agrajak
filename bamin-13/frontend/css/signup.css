@@ -100,6 +100,8 @@ box-sizing: border-box;
     color:#BFC4D0;
     font-weight: bold;
     border:1px solid #BFC4D0;
+    cursor:pointer;
+    text-align:center;
 }
 
 #password-chk,#name {
@@ -151,6 +153,7 @@ box-sizing: border-box;
     color:#fff;
     font-weight: bold;
     font-size:16px;
+    cursor:pointer;
 }
 
 .terms-flex-container,.essential-flex-container,
@@ -217,15 +220,19 @@ box-sizing: border-box;
     text-decoration:underline;
 }
 
+.alert-message:not(.is-visible){
+    display:none;
+}
 .alert-message{
     color:red;
     font-size:14px;
     padding:7px;
 }
 
-.is-hidden{
-    display:none;
+.is-visible {
+    display: block
 }
-
-
+.red-box{
+    border:1px solid red;
+}
 

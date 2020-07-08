@@ -8,7 +8,7 @@ const checkList = ['id', 'password', 'name','password-chk'];
 formElement.addEventListener('focusout', (event)=>{
     const {target} = event;
     // 현재의 타겟이 id, password, name 중에 하나라면 
-    console.log(target.id);
+    // console.log(target.id);
     let validation = true;
     if(checkList.includes(target.id)){
         // 유효성 검사
