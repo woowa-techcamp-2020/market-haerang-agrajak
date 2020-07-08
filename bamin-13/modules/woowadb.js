@@ -1,15 +1,15 @@
 const WOOWA_DB_PATH = './data.json'
 const fs = require('fs');
-const User = require('./models/users')
+const User = require('../models/users')
 class WoowaDB {
   constructor(){
     if(!fs.existsSync(WOOWA_DB_PATH)){
       const initObj = {users: []};
-      fs.writeFileSync(WOOWA_DB_PATH, initObj)
+      fs.writeFileSync(WOOWA_DB_PATH, JSON.stringify(initObj))
     }
   }
   getUsers(){
-    const {users} = fs.readFileSync(WOOWA_DB_PATH);
+    const {users} = JSON.parse(fs.readFileSync(WOOWA_DB_PATH));
     return users;
   }
   findUser(id){
@@ -26,14 +26,12 @@ class WoowaDB {
   }
   addUser(obj){
     try{
-      const newUsers = [...this.getUsers(), User(obj)]
-      fs.writeFileSync(WOOWA_DB_PATH, {users: newUsers});
+      const newUsers = [...this.getUsers(), new User(obj)]
+      fs.writeFileSync(WOOWA_DB_PATH, JSON.stringify({users: newUsers}));
     }
     catch(e){
       console.error(e);
     }
   }
 }
-module.exports = {
-  WoowaDB
-}
+module.exports = WoowaDB

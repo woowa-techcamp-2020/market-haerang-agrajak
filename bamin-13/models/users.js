@@ -1,17 +1,18 @@
 class User {
     constructor(obj){
-        const {id, name, password, email, postalCode, address1, address2, phoneNumber} = obj;
+        const {id, name, password, email, postalCode, address, detailAddress, phone} = obj;
         this.id = id
         this.name = name
         this.password = password
         this.email = email
         this.postalCode = postalCode
-        this.address1 = address1
-        this.address2 = address2
-        this.phoneNumber = phoneNumber
+        this.address = address
+        this.detailAddress = detailAddress
+        this.phone = phone
     }
     validate(){
         // TODO: validate id, name, password
         return true
     }
 }
+module.exports = User
