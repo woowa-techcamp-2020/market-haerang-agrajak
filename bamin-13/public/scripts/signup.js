@@ -30,6 +30,14 @@ addressCheckBox.addEventListener('input', (event)=>{
     setAddressBoxEnabled(checked);
 })
 
+const numberSubmitBtn=document.querySelector('#number-submit-btn');
+numberSubmitBtn.addEventListener('click',()=>{
+// 만약에 인증번호가 일치한다면
+    phoneAuthAlert.classList.add('hidden');
+    numberAlert.classList.remove('is-visible');
+    numberInputText.classList.remove('red-box');
+})
+
 // 이벤트 위임 
 // 텍스트 입력창에서 벗어날 때 유효성 검사 조건에 맞지 않으면 경고문 보여준다
 formElement.addEventListener('focusout', (event)=>{
