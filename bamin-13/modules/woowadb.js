@@ -14,10 +14,12 @@ class WoowaDB {
   }
   findUser(id){
     try{
-      const user = this.getUsers().find(x=>x.id == id);
+      const users = this.getUsers()
+      const user = users.find(x=>x.id == id);
       if(user){
-        return User(user)
+        return new User(user)
       }
+      return null
     }
     catch(e){
       console.error(e);

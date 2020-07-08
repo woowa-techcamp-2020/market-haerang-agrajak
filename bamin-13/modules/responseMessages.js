@@ -12,7 +12,7 @@ module.exports = {
     LOGIN_SUCCESS: "로그인 성공",
     LOGIN_FAIL: "로그인 실패",
     NO_USER: "존재하지 않는 회원입니다.",
-    MISS_MATCH_PW: "비밀번호가 맞지 않습니다.",
+    MISMATCH_PW: "비밀번호가 맞지 않습니다.",
 
     // 아이디 중복검사
     AVAILABLE_ID: "사용가능한 아이디입니다."
