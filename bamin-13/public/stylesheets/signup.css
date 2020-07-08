@@ -52,6 +52,8 @@ box-sizing: border-box;
     padding:7px;
 }
 
+
+
 .email-flex-container{
     display:flex;
     height:47px;
@@ -111,6 +113,13 @@ box-sizing: border-box;
 #email-select{
     margin-top:20px;
 }
+
+.postcode{
+    width:400px;
+    display:flex;
+    flex-direction:column;
+}
+
 .address-flex-chk-container{
     width:400px;
     display:flex;
@@ -139,13 +148,16 @@ box-sizing: border-box;
 
 .postcode-flex-container, .address-flex-container{
     display:flex;
-    height:47px;
+    min-height:47px;
     width:400px;
     justify-content: space-between;
+    margin: 0.5em 0em;
 }
 
+
 .address-flex-item{
-    margin:0.5em 2em;
+    /* margin:0.5em 2em; */
+    margin: 0.5em 0em;
 }
 
 #signup-finish-btn{

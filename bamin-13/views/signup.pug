@@ -4,9 +4,10 @@ head
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   link(rel='stylesheet' href='/stylesheets/signup.css')
   link(rel='stylesheet' href='/stylesheets/modal.css')
-  script(src='/scripts/utils.js' defer='')
-  script(src='/scripts/signup.js' defer='')
-  script(src='/scripts/modal.js' defer='')
+  script(src='/scripts/utils.js' defer)
+  script(src='/scripts/signup.js' defer)
+  script(src='/scripts/modal.js' defer)
+  script(src='https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js')
   title Signup page
 .wrapper
   .signup-container
@@ -39,7 +40,7 @@ head
         input#auth-btn.auth-flex-item(value='인증받기')
 
       div(style='margin:0.5em auto')
-      #auth.auth-container
+      #auth.auth-container.hidden
         input#auth-number-input.auth-flex-item(name="authNumber" type='text' placeholder='인증번호 6자리 입력')
         input#number-submit-btn.auth-flex-item(value='확인')
       #number-alert.alert-message 인증번호를 입력해주세요.
@@ -48,12 +49,14 @@ head
         input#select-info-chk(type='checkbox')
         p 선택 정보를 입력하시겠어요?
         ul 내용보기
-      .postcode-flex-container
-        input#postcode.postcode-flex-item(name="postalCode" type='text' placeholder='우편번호')
-        input#address-btn.postcode-flex-item(type='submit' value='주소찾기')
-      div(style='margin-bottom:0.5em')
-      input#address.address-flex-item(name="address" type='text' placeholder='주소')
-      input#detail-address.address-flex-item(name="detailAddress" type='text' placeholder='상세주소')
+      #postcode-box.postcode
+        .postcode-flex-container(style="margin:0")
+          input#postcode.postcode-flex-item(name="postalCode" type='text' placeholder='우편번호')
+          input#address-btn.postcode-flex-item(value='주소찾기')
+        div(style='margin-bottom:0.5em')
+        .postcode-flex-container(style="margin:0;flex-direction:column")
+          input#address.address-flex-item(name="address" type='text' placeholder='주소')
+          input#detail-address.address-flex-item(name="detailAddress" type='text' placeholder='상세주소')
       .terms-flex-container
         input#terms-agree-chk(type='checkbox')
         p 전체 약관에 동의합니다.

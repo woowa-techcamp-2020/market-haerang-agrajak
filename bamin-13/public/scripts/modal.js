@@ -11,6 +11,8 @@ const openModal=()=>{
 const closeModal=()=>{
     // console.log('close');
     modal.classList.add('hidden');
+    
+
 }
 
 authBtn.addEventListener('click',openModal);
