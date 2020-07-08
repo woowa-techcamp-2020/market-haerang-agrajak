@@ -12,6 +12,14 @@ function validatePassword(password){
   if(password.length < 8 || password.length > 20) return false;
   return /^([A-Za-z0-9]+)$/.test(password)
 }
+
+function validatePasswordChk(password,passwordChk){
+  if(password!==passwordChk)return false;
+  return true;
+}
+
+
+
 /*
 console.log(validateId('1231dDSFSDF'))
 console.log(validateId('1231-123'))
