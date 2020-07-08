@@ -1,7 +1,6 @@
 const authBtn=document.getElementById('auth-btn');
 const modal=document.querySelector('.modal-container');
 const closeModalBtn=document.getElementById('close-modal-btn')
-const a=document.getElementById('a');
 const modalOverlay=document.querySelector('.modal-overlay');
 
 const openModal=()=>{
