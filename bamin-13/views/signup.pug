@@ -3,8 +3,10 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   link(rel='stylesheet' href='/stylesheets/signup.css')
+  link(rel='stylesheet' href='/stylesheets/modal.css')
   script(src='/scripts/utils.js' defer='')
   script(src='/scripts/signup.js' defer='')
+  script(src='/scripts/modal.js' defer='')
   title Signup page
 .wrapper
   .signup-container
@@ -35,6 +37,7 @@ head
       #auth.auth-container
         input#phone.auth-flex-item(name="phone" type='text' placeholder='휴대폰*')
         input#auth-btn.auth-flex-item(type='submit' value='인증받기')
+
       div(style='margin:0.5em auto')
       #auth.auth-container
         input#auth-number-input.auth-flex-item(name="authNumber" type='text' placeholder='인증번호 6자리 입력')
@@ -68,3 +71,10 @@ head
           | 만 14세 이상 회원만 가입 가능합니다.
         li(style='list-style:none' ) 내용보기
       input#signup-finish-btn.form-flex-item(type='submit' value='가입완료')
+
+  .modal-container.hidden
+    .modal-overlay
+    .modal-content
+      p 인증번호를 확인해주세요
+      input#close-modal-btn(value='확인')
+

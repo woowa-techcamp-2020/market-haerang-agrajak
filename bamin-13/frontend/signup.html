@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/signup.css">
+    <link rel="stylesheet" href="./css/modal.css">
+    <script src="./scripts/modal.js" defer></script>
    
     <title>Signup page</title>
 </head>
@@ -37,7 +39,7 @@
             <div id="name-alert" class="alert-message">이름은 영어와 한글만 사용가능합니다.</div>
             <div id="auth" class="auth-container">
                 <input type="text" id="phone" placeholder="휴대폰*" class="auth-flex-item" >
-                <input type="submit" value="인증받기" id="auth-btn" class="auth-flex-item">
+                <input value="인증받기" id="auth-btn" class="auth-flex-item">
             </div>
             <div style="margin:0.5em auto"></div>
             <div id="auth" class="auth-container">
@@ -84,16 +86,19 @@
             
             <input type="submit" value="가입완료" id="signup-finish-btn" class="form-flex-item">
 
-            <div class="modal-container">
-                <div class="modal-bg">
-                    <div class="modal-contents">
-                        인증번호를 확인해주세요
-                    </div>
-                </div>
-            </div>
+           
 
         </form>
     </div>
+   
+    <div class="modal-container hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <p>인증번호를 확인해주세요</p>
+            <input value="확인" id="close-modal-btn" >
+        </div>
+    </div>
 </div>
+        
 </body>
 </html>
