@@ -20,6 +20,7 @@ function validatePasswordChk(password,passwordChk){
 
 
 
+
 /*
 console.log(validateId('1231dDSFSDF'))
 console.log(validateId('1231-123'))

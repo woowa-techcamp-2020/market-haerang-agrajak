@@ -2,6 +2,34 @@
 const formElement = document.querySelector('form');
 const checkList = ['id', 'password', 'name','password-chk'];
 
+const postalBox = new daum.Postcode({
+    oncomplete: function(data) {
+        const {zonecode, address} = data;
+        document.getElementById('postcode').value = zonecode;
+        document.getElementById('address').value = address;
+    }
+})
+
+const openPostalButton = document.querySelector('#address-btn')
+openPostalButton.addEventListener('click', ()=>{
+    postalBox.open();
+})
+
+const addressCheckBox = document.getElementById('select-info-chk')
+function setAddressBoxEnabled(value){
+    const addressBox = document.getElementById('postcode-box')
+    addressBox.childNodes.forEach(node=>{
+        node.childNodes.forEach(elem=>{
+            elem.disabled = !value
+        })
+    })
+}
+setAddressBoxEnabled(false);
+addressCheckBox.addEventListener('input', (event)=>{
+    const {checked} = event.target
+    setAddressBoxEnabled(checked);
+})
+
 // 이벤트 위임 
 // 텍스트 입력창에서 벗어날 때 유효성 검사 조건에 맞지 않으면 경고문 보여준다
 formElement.addEventListener('focusout', (event)=>{
