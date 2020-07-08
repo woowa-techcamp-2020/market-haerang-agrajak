@@ -2,26 +2,31 @@ doctype html
 head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  link(rel='stylesheet' href='/stylesheets/complete.css')
+  link(rel='stylesheet' href='/stylesheets/main.css')
   script(src='/scripts/main.js' defer='')
 body
-    .wrapper
-    form#complete-container
-      a(href='/') 메인으로 
-      #complete-info-container
+    form.main-container
+      .rows.large-text
+        .row 배민상회사장님광장
+        .row 회원이 되셨습니다.
+      .wrapper
+      .row
+        a.guide(href='/') 메인으로
+      .rows.table
         .row
-          span.type 이름
-          span.value=name
+          span.th 이름
+          span.td=name
         .row
-          span.type 아이디
-          span.value=id
+          span.th 아이디
+          span.td=id
         .row
-          span.type 이메일
-          span.value=email
+          span.th 이메일
+          span.td=email
         .row
-          span.type 핸드폰
-          span.value=phone
-      small 위 내용은 #[a 내 정보 관리]에서 수정하실 수 있습니다.
+          span.th 핸드폰
+          span.td=phone
+      .row
+        small - 위 내용은 #[a 내 정보 관리]에서 수정하실 수 있습니다.
       
 
     
