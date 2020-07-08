@@ -15,6 +15,10 @@ module.exports = {
     MISMATCH_PW: "비밀번호가 맞지 않습니다.",
 
     // 아이디 중복검사
-    AVAILABLE_ID: "사용가능한 아이디입니다."
+    AVAILABLE_ID: "사용가능한 아이디입니다.",
 
+    // 핸드폰 인증
+    AUTH_INVALID: "만료한 인증번호 입니다.",
+    AUTH_SUCCESS: "성공적으로 인증되었습니다.",
+    AUTH_FAIL: "잘못된 인증번호 입니다."
   };
