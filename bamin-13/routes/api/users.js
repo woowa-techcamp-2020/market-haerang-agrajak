@@ -3,17 +3,14 @@ const router = express.Router();
 const {success, fail} = require('../../modules/utils')
 const MSG = require('../../modules/responseMessages')
 const WoowaDB = require('../../modules/woowadb');
-const { response } = require('express');
 const woowaDB = new WoowaDB()
 
 router.post('/login', function(req, res, next) {
   const {id, password} = req.body;
-  console.log(req.body)
   const user = woowaDB.findUser(id);
   // TODO: 비밀번호 해싱값 비교
   if(!user){
     res.render('error', {message: MSG.NO_USER});
-    //res.send(fail(200, MSG.NO_USER));
   }
   else if(user.password === password){
     // TODO: 로그인 세션 관리
