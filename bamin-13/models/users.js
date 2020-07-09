@@ -1,9 +1,10 @@
 class User {
     constructor(obj){
-        const {id, name, password, email, postalCode, address, detailAddress, phone} = obj;
+        const {id, name, password,salt, email, postalCode, address, detailAddress, phone} = obj;
         this.id = id
         this.name = name
-        this.password = password
+        this.password=password
+        this.salt=salt
         this.email = email
         this.postalCode = postalCode
         this.address = address
