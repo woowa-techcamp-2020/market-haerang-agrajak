@@ -1,35 +1,30 @@
-const checkList = ['id', 'password', 'name','password-chk'];
-
-const formElement = document.querySelector('form');
-
 // 인증 버튼 클릭시 모달 관련 변수들
-const authBtn = document.getElementById('phone-auth-btn');
+
 const openPostalButton = document.querySelector('#address-btn')
 const numberInputText = document.querySelector('#auth-number-input');
 const numberAlert = document.getElementById('number-alert');
-const blueBtn=document.querySelectorAll('.item-2-btn');
+const blueBtn = document.querySelectorAll('.item-2-btn');
 const modal = document.querySelector('.modal-container');
 const closeModalBtn = document.getElementById('close-modal-btn')
 const modalOverlay = document.querySelector('.modal-overlay');
 
-
 //주소 찾기
-const addressBtn=document.querySelector('#address-btn');
-const addressCheckBox = document.getElementById('select-info-chk')
-const codeBox = document.querySelector('#code-box');
+const addressBtn = elements['address-btn'];
+const addressCheckBox = elements['select-info-chk']
+const codeBox = document.getElementById('code-box');
 
 // 약관 동의
-const essentialCheckBox = document.getElementById('essential-info-chk')
-const termsAgreeCheckBox = document.getElementById('terms-agree-chk')
-const advertiseCheckBox = document.getElementById('advertise-info-chk')
+const essentialCheckBox = elements['essential-info-chk']
+const termsAgreeCheckBox = elements['terms-agree-chk']
+const advertiseCheckBox = elements['advertise-info-chk']
 
 
 //우편 번호 찾기 기능 
 const postalBox = new daum.Postcode({
     oncomplete: function(data) {
         const {zonecode, address} = data;
-        document.getElementById('postcode').value = zonecode;
-        document.getElementById('address').value = address;
+        elements['postcode'].value = zonecode;
+        elements['address'].value = address;
     }
 })
 
@@ -75,7 +70,7 @@ elements['signup-finish-btn'].addEventListener('click', submit)
 function submit(){
     // TODO: validation 한번 더하기 (빈 칸 있으면 찾아내기) -> Focus 해주기
     if(validateForms())
-        formElement.submit();
+        form.submit();
 }
 var countFinishedAt = 0;
 
@@ -85,40 +80,65 @@ function renderCountDown(){
     let min = String(parseInt(sec/60)+100).substr(1,2); 
     sec = String(sec%60+100).substr(1,2)
     timer.innerText = `${min}:${sec}`
-    if(sec>0){
+    if(elements['auth-number-input'].getAttribute('authed')){
+        document.getElementById('number-alert').innerText = '인증되었습니다'
+    }
+    else if(sec>0){
         setTimeout(renderCountDown, 500);
     }
     else {
+        document.getElementById('number-alert').innerText = '입력시간을 초과하였습니다'
         timer.innerText = ''
-        numberAlert.innerText='입력시간을 초과하였습니다'
     }
 }
 
-
-function requestAuthCode(){
+function request(url, method, data) {
+    return new Promise((resolve, reject)=>{
+        const http = new XMLHttpRequest();
+        if(!http) reject(new Error('No Http Object!'));
+        http.open(method, url)
+        if(method == 'post' || method == 'POST'){
+            http.setRequestHeader('Content-Type', 'application/json');
+        }
+        http.onload = function(){
+            if(http.status === 200 || http.status == 201){
+                resolve(JSON.parse(http.responseText))
+            }
+            else{
+                reject(JSON.parse(http.responseText))
+            }
+        };
+    
+        http.send(JSON.stringify(data))
+    })
+}
+async function requestAuthCode(){
     //todo: 인증이 완료되었을 경우에는 그냥 리턴하는 함수
     // if(true){
     //     //remove eventlistener
     //     return;
     // }
-    const http = new XMLHttpRequest();
-    const phone = document.getElementById('phone').value;
-    if(!http) return;
-    http.onload = function(){
-        if(http.status === 200 || http.status == 201){
-            const {authCode, invalidAt} = JSON.parse(http.responseText)['data']
-            openModal(authCode); //모달 열기
-            countFinishedAt = invalidAt;
-        }
-    };
-    http.open('POST', '/api/phone-auth');
-    http.setRequestHeader('Content-Type', 'application/json');
-    http.send(JSON.stringify({phone}));
+    const {data} = await request('/api/phone-auth', 'POST', {phone: elements['phone'].value});
+    const {authCode, invalidAt} = data
+    openModal(authCode); //모달 열기
+    countFinishedAt = invalidAt;
+}
+async function compareAuthCode(){
+    const phone = elements['phone'].value
+    const authCode = elements['auth-number-input'].value
+    
+    const data = await request(`/api/phone-auth?phone=${phone}&authCode=${authCode}`, 'GET');
+    console.log(data)
+    const {success, message} = data
+    if(success){
+        elements['auth-number-input'].setAttribute('authed', 'true');
+    }
 }
 
 // 인증번호 생성 관련 모달 함수
 
-authBtn.addEventListener('click', requestAuthCode);
+elements['phone-auth-btn'].addEventListener('click', requestAuthCode);
+elements['number-submit-btn'].addEventListener('click', compareAuthCode);
 
 const openModal=(value)=>{
     modal.classList.remove('hidden');
@@ -128,13 +148,12 @@ const openModal=(value)=>{
 const closeModal=()=>{
     modal.classList.add('hidden');
     codeBox.classList.remove('hidden');
-    numberAlert.classList.remove('hidden');
-    numberInputText.classList.add('red-box');
+    validateQueue([elements['auth-number-input']])
     blueBtn.forEach(v=>{
         if(!v.classList.contains('address-btn')){
             v.classList.remove('item-2-btn');
             v.classList.add('blue-btn');
-            authBtn.value='재전송';
+            elements['phone-auth-btn'].value='재전송';
         }
     })
     renderCountDown()
