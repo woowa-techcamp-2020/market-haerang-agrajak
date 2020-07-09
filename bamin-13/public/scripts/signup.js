@@ -91,13 +91,19 @@ function renderCountDown(){
         timer.innerText = ''
     }
 }
-
+const emailSelector = document.getElementById('email-select-container');
+emailSelector.addEventListener('input', (event)=>{
+    const {value} = event.target
+    if(value === ''){
+        elements['email-back'].removeAttribute('disabled');
+        elements['email-back'].value = '';
+    }
+    else if(value !== 'select'){
+        elements['email-back'].setAttribute('disabled', 'true');
+        elements['email-back'].value = value;
+    }
+})
 async function requestAuthCode(){
-    //todo: 인증이 완료되었을 경우에는 그냥 리턴하는 함수
-    // if(true){
-    //     //remove eventlistener
-    //     return;
-    // }
     const {data} = await request('/api/phone-auth', 'POST', {phone: elements['phone'].value});
     const {authCode, invalidAt} = data
     openModal(authCode); //모달 열기
