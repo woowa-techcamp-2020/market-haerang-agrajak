@@ -21,6 +21,10 @@ function validatePasswordChk(password, passwordChk){
   return true;
 }
 
+function validatePhone(phone){
+  return /^\d{3}-\d{3,4}-\d{4}$/.test(phone)
+}
+
 function request(url, method, data) {
   return new Promise((resolve, reject)=>{
       const http = new XMLHttpRequest();
@@ -129,8 +133,13 @@ async function validate(elem){
     else if(!validateName(value)) message = '이름은 영어와 한글만 사용가능합니다.'
   }
   if(id == 'phone'){
+    const phoneAuthBtn = elements['phone-auth-btn']
+    phoneAuthBtn.removeAttribute('disabled')
     if(value.length == 0) message = '핸드폰 번호를 입력해주세요'
-    // TODO: validatePhone() 구현
+    else if(!validatePhone(value)) message = '잘못된 핸드폰 번호입니다.'
+    if(message !== ''){
+      phoneAuthBtn.setAttribute('disabled', 'true')
+    }
   }
   if(id == 'auth-number-input'){
     if(value.length == 0) message = '인증번호를 입력해주세요.'
