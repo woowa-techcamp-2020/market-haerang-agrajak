@@ -3,26 +3,33 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   link(rel='stylesheet' href='/stylesheets/main.css')
-  script(src='/scripts/main.js' defer='')
+  script(src='/scripts/utils.js' defer='')
+  script(src='/scripts/login.js' defer='')
   title 로그인
 body
   .wrapper
   form.main-container(action='/api/users/login' method='post')
     .row.center
       img(src='./images/logo-ceo.png')
-    .row
-      input.form#id(name="id" placeholder='아이디')
-    .row
-      input.form#password(name="password" placeholder='비밀번호')
+    .rows
+      .row
+        input.form#id(name="id" placeholder='아이디' alert='id-alert')
+      .row
+        label#id-alert.alert.hidden
+    .rows
+      .row
+        input.form#password(name="password" type="password" placeholder='비밀번호' alert='id-password')
+      .row
+        label#id-password.alert.hidden
     .row.has-addons
       .addons
-        input(type="checkbox") 
+        input#id-chkbox(type="checkbox") 
         label 아이디 저장
       .addons
         a.addons#search 아이디 / 비밀번호 찾기 
         a.addons | 
         a.addons#signup(href='/signup') 회원가입
-    .row
-      input.large-btn(type='submit' value='로그인') 
+    .row.center
+      input#login-btn.large-btn(value='로그인') 
 
   
