@@ -34,16 +34,16 @@ head
         .container
             input#email-front.email-item(name="emailFront" type='text' placeholder='이메일 앞자리*' alert="email-alert")
             p#email-at @
-            input#email-back.email-item(name="emailBack" type='text' placeholder='이메일 뒷자리*' alert="email-alert")
+            input#email-back.email-item(name="emailBack" type='text' placeholder='이메일 뒷자리*' alert="email-alert" disabled)
         #email-alert.alert-msg.hidden 
       
       #email-select-container
         select#email-select.form-item
-            option(value='') 이메일 선택
+            option(value='select') 이메일 선택
             option(value='') 직접입력
-            option(value='') naver.com
-            option(value='') gmail.com
-            option(value='') daum.net
+            option(value='naver.com') naver.com
+            option(value='gmail.com') gmail.com
+            option(value='daum.net') daum.net
     
       #name-container
         input#name.form-item(name="name" type='text' placeholder='이름*' alert="name-alert")

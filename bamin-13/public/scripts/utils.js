@@ -3,6 +3,10 @@ function validateId(id) {
   if(id.length < 4 || id.length > 20) return false;
   return /^([a-z0-9-_]+)$/.test(id)
 }
+async function validateDuplicateId(id) {
+  const {success} = await request(`/api/users/${id}`, 'get');
+  return success
+}
 function validateName(name){
   // 특수문자, 숫자는 사용 불가능
   return /^([a-zA-Z가-힣]+)$/.test(name)
@@ -22,25 +26,47 @@ const elements = form.elements
 
 form.addEventListener('focusout', validateForms);
 
-function validateForms(event){
+function request(url, method, data) {
+  return new Promise((resolve, reject)=>{
+      const http = new XMLHttpRequest();
+      if(!http) reject(new Error('No Http Object!'));
+      http.open(method, url)
+      if(method == 'post' || method == 'POST'){
+          http.setRequestHeader('Content-Type', 'application/json');
+      }
+      http.onload = function(){
+          if(http.status === 200 || http.status == 201){
+              resolve(JSON.parse(http.responseText))
+          }
+          else{
+              reject(JSON.parse(http.responseText))
+          }
+      };
+  
+      http.send(JSON.stringify(data))
+  })
+}
+
+async function validateForms(event){
     if(event){
         // 이벤트에서 이 함수가 호출된 경우에는 큐에 이벤트 타겟 하나만 넣는다.
-        return validateQueue([event.target])
+        return await validateQueue([event.target])
     }
     else {
         // 이벤트에서 이 함수가 호출된 경우에는 큐에 폼에 있는 모든 인풋을 넣는다.
-        return validateQueue([...elements])
+        return await validateQueue([...elements])
     }
 }
 
-function validateQueue(queue){
+async function validateQueue(queue){
   // queue(배열)에 있는 요소들이 모두 조건에 부합하는가를 검사한다.
   for(const elem of queue){
       const alertTarget = elem.getAttribute('alert');
       // html에 alert attribute가 있는 htmlElement만 검사한다.
       if(alertTarget){
           const alertElem = document.getElementById(alertTarget);
-          const {validation, message} = validate(elem);
+          const {validation, message} = await validate(elem);
+          alertElem.classList.remove('success')
           if(!validation){
               elem.classList.add('red-box')
               alertElem.classList.remove('hidden')
@@ -52,21 +78,33 @@ function validateQueue(queue){
               return false;
           }
           elem.classList.remove('red-box')
-          alertElem.classList.add('hidden')
-          alertElem.innerText = ''
+          if(message === ''){
+            alertElem.classList.add('hidden')
+            alertElem.innerText = ''  
+          }
+          else {
+            alertElem.classList.remove('hidden')
+            alertElem.classList.add('success')
+            alertElem.innerText = message
+          }
       }
   }
   return true;
 }
 
 
-function validate(elem){
-  const {value, id, checked=true} = elem;    
+async function validate(elem){
+  const {value, id, checked = true} = elem;    
   let message = '';
-
+  let ret = false;
   if(id === 'id'){
       if(value.length == 0) message = '아이디를 입력해주세요';
       else if(!validateId(value)) message = '아이디는 4-20자의 영소문자, 숫자, 특수기호(-, _)만 사용가능합니다.'
+      else if(!await validateDuplicateId(value)) message = '이미 사용 중인 아이디 입니다.'
+      else {
+        ret = true;
+        message = '사용 가능한 아이디입니다.'
+      }
   }
   if(id == 'password'){
       if(value.length == 0) message = '비밀번호를 입력해주세요';
@@ -100,31 +138,11 @@ function validate(elem){
     if(!checked) message = '필수항목에는 체크를 하셔야합니다.'
   }
   return {
-      validation: message === '',
+      validation: ret || message === '',
       message
   }
 }
 
-function request(url, method, data) {
-  return new Promise((resolve, reject)=>{
-      const http = new XMLHttpRequest();
-      if(!http) reject(new Error('No Http Object!'));
-      http.open(method, url)
-      if(method == 'post' || method == 'POST'){
-          http.setRequestHeader('Content-Type', 'application/json');
-      }
-      http.onload = function(){
-          if(http.status === 200 || http.status == 201){
-              resolve(JSON.parse(http.responseText))
-          }
-          else{
-              reject(JSON.parse(http.responseText))
-          }
-      };
-  
-      http.send(JSON.stringify(data))
-  })
-}
 /*
 console.log(validateId('1231dDSFSDF'))
 console.log(validateId('1231-123'))
