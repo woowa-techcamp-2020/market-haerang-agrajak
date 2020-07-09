@@ -92,26 +92,6 @@ function renderCountDown(){
     }
 }
 
-function request(url, method, data) {
-    return new Promise((resolve, reject)=>{
-        const http = new XMLHttpRequest();
-        if(!http) reject(new Error('No Http Object!'));
-        http.open(method, url)
-        if(method == 'post' || method == 'POST'){
-            http.setRequestHeader('Content-Type', 'application/json');
-        }
-        http.onload = function(){
-            if(http.status === 200 || http.status == 201){
-                resolve(JSON.parse(http.responseText))
-            }
-            else{
-                reject(JSON.parse(http.responseText))
-            }
-        };
-    
-        http.send(JSON.stringify(data))
-    })
-}
 async function requestAuthCode(){
     //todo: 인증이 완료되었을 경우에는 그냥 리턴하는 함수
     // if(true){

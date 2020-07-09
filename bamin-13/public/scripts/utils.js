@@ -105,6 +105,26 @@ function validate(elem){
   }
 }
 
+function request(url, method, data) {
+  return new Promise((resolve, reject)=>{
+      const http = new XMLHttpRequest();
+      if(!http) reject(new Error('No Http Object!'));
+      http.open(method, url)
+      if(method == 'post' || method == 'POST'){
+          http.setRequestHeader('Content-Type', 'application/json');
+      }
+      http.onload = function(){
+          if(http.status === 200 || http.status == 201){
+              resolve(JSON.parse(http.responseText))
+          }
+          else{
+              reject(JSON.parse(http.responseText))
+          }
+      };
+  
+      http.send(JSON.stringify(data))
+  })
+}
 /*
 console.log(validateId('1231dDSFSDF'))
 console.log(validateId('1231-123'))
