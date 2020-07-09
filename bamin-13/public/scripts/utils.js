@@ -102,10 +102,12 @@ async function validate(elem){
   if(id === 'id'){
       if(value.length == 0) message = '아이디를 입력해주세요';
       else if(!validateId(value)) message = '아이디는 4-20자의 영소문자, 숫자, 특수기호(-, _)만 사용가능합니다.'
-      else if(!await validateDuplicateId(value)) message = '이미 사용 중인 아이디 입니다.'
-      else {
-        ret = true;
-        message = '사용 가능한 아이디입니다.'
+      else if(form.getAttribute('type') === 'signup'){ // 회원가입 페이지 일때만 아이디 중복 체크를 한다.
+        if(!await validateDuplicateId(value)) message = '이미 사용 중인 아이디 입니다.'
+        else {
+          ret = true;
+          message = '사용 가능한 아이디입니다.'
+        }  
       }
   }
   if(id == 'password'){
