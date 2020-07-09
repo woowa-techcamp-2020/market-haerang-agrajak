@@ -21,10 +21,9 @@ function validatePasswordChk(password, passwordChk){
   return true;
 }
 
-const form = document.forms[0]
-const elements = form.elements
-
-form.addEventListener('focusout', validateForms);
+function validatePhone(phone){
+  return /^\d{3}-\d{3,4}-\d{4}$/.test(phone)
+}
 
 function request(url, method, data) {
   return new Promise((resolve, reject)=>{
@@ -46,6 +45,13 @@ function request(url, method, data) {
       http.send(JSON.stringify(data))
   })
 }
+
+if(document.forms.length){
+  var form = document.forms[0]
+  var elements = form.elements  
+  form.addEventListener('focusout', validateForms);
+}
+
 
 async function validateForms(event){
     if(event){
@@ -100,10 +106,12 @@ async function validate(elem){
   if(id === 'id'){
       if(value.length == 0) message = '아이디를 입력해주세요';
       else if(!validateId(value)) message = '아이디는 4-20자의 영소문자, 숫자, 특수기호(-, _)만 사용가능합니다.'
-      else if(!await validateDuplicateId(value)) message = '이미 사용 중인 아이디 입니다.'
-      else {
-        ret = true;
-        message = '사용 가능한 아이디입니다.'
+      else if(form.getAttribute('type') === 'signup'){ // 회원가입 페이지 일때만 아이디 중복 체크를 한다.
+        if(!await validateDuplicateId(value)) message = '이미 사용 중인 아이디 입니다.'
+        else {
+          ret = true;
+          message = '사용 가능한 아이디입니다.'
+        }  
       }
   }
   if(id == 'password'){
@@ -125,8 +133,13 @@ async function validate(elem){
     else if(!validateName(value)) message = '이름은 영어와 한글만 사용가능합니다.'
   }
   if(id == 'phone'){
+    const phoneAuthBtn = elements['phone-auth-btn']
+    phoneAuthBtn.removeAttribute('disabled')
     if(value.length == 0) message = '핸드폰 번호를 입력해주세요'
-    // TODO: validatePhone() 구현
+    else if(!validatePhone(value)) message = '잘못된 핸드폰 번호입니다.'
+    if(message !== ''){
+      phoneAuthBtn.setAttribute('disabled', 'true')
+    }
   }
   if(id == 'auth-number-input'){
     if(value.length == 0) message = '인증번호를 입력해주세요.'
