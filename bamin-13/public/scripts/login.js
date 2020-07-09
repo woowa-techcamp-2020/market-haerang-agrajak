@@ -10,7 +10,6 @@ if(savedId){
 
 form.addEventListener('focusout', validateForms);
 
-
 function validateQueue(queue){
     // queue(배열)에 있는 요소들이 모두 조건에 부합하는가를 검사한다.
     for(const elem of queue){
