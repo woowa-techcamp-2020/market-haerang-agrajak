@@ -29,7 +29,7 @@ class WoowaDB {
   addUser(obj){
     try{
       const newUsers = [...this.getUsers(), new User(obj)]
-      fs.writeFileSync(WOOWA_DB_PATH, JSON.stringify({users: newUsers}));
+      fs.writeFileSync(WOOWA_DB_PATH, JSON.stringify({users: newUsers}, null, 2));
     }
     catch(e){
       console.error(e);

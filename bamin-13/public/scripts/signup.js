@@ -8,6 +8,7 @@ const modal = document.querySelector('.modal-container');
 const closeModalBtn = document.getElementById('close-modal-btn')
 const modalOverlay = document.querySelector('.modal-overlay');
 
+
 //주소 찾기
 const addressBtn = elements['address-btn'];
 const addressCheckBox = elements['select-info-chk']
@@ -66,6 +67,8 @@ termsAgreeCheckBox.addEventListener('input', (event)=>{
     advertiseCheckBox.checked = checked
 })
 
+
+// 가입 완료 버튼 눌렀을 때 
 elements['signup-finish-btn'].addEventListener('click', submit)
 function submit(){
     // TODO: validation 한번 더하기 (빈 칸 있으면 찾아내기) -> Focus 해주기
@@ -81,23 +84,23 @@ function renderCountDown(){
     sec = String(sec%60+100).substr(1,2)
     timer.innerText = `${min}:${sec}`
     if(elements['auth-number-input'].getAttribute('authed')){
-        document.getElementById('number-alert').innerText = '인증되었습니다'
+        numberAlert.innerText = '인증되었습니다'
+        numberAlert.style.color='blue';
+        timer.innerText=''
+        numberInputText.classList.remove('red-box');
+        elements['phone-auth-btn'].classList.remove('blue-btn');
+        elements['phone-auth-btn'].classList.add('item-2-btn');
     }
     else if(sec>0){
         setTimeout(renderCountDown, 500);
     }
     else {
-        document.getElementById('number-alert').innerText = '입력시간을 초과하였습니다'
+        numberAlert.innerText = '입력시간을 초과하였습니다'
         timer.innerText = ''
     }
 }
 
 async function requestAuthCode(){
-    //todo: 인증이 완료되었을 경우에는 그냥 리턴하는 함수
-    // if(true){
-    //     //remove eventlistener
-    //     return;
-    // }
     const {data} = await request('/api/phone-auth', 'POST', {phone: elements['phone'].value});
     const {authCode, invalidAt} = data
     openModal(authCode); //모달 열기
