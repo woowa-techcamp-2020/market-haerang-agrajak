@@ -1,23 +1,12 @@
 // 인증 버튼 클릭시 모달 관련 변수들
 
-const openPostalButton = document.querySelector('#address-btn')
-const numberInputText = document.querySelector('#auth-number-input');
-const numberAlert = document.getElementById('number-alert');
 const blueBtn = document.querySelectorAll('.item-2-btn');
 const modal = document.querySelector('.modal-container');
 const closeModalBtn = document.getElementById('close-modal-btn')
 const modalOverlay = document.querySelector('.modal-overlay');
 
 //주소 찾기
-const addressBtn = elements['address-btn'];
-const addressCheckBox = elements['select-info-chk']
 const codeBox = document.getElementById('code-box');
-
-// 약관 동의
-const essentialCheckBox = elements['essential-info-chk']
-const termsAgreeCheckBox = elements['terms-agree-chk']
-const advertiseCheckBox = elements['advertise-info-chk']
-
 
 //우편 번호 찾기 기능 
 const postalBox = new daum.Postcode({
@@ -28,14 +17,13 @@ const postalBox = new daum.Postcode({
     }
 })
 
-openPostalButton.addEventListener('click', ()=>{
+elements['address-btn'].addEventListener('click', ()=>{
     postalBox.open();
 })
 
-
 // 주소 선택 여부 따른 입력 가능/불가 기능 
 function setAddressBoxEnabled(value){
-
+    const addressBtn = elements['address-btn']
     if(value){
         addressBtn.classList.remove('item-2-btn');
         addressBtn.classList.add('blue-btn');
@@ -54,16 +42,16 @@ function setAddressBoxEnabled(value){
 }
 
 setAddressBoxEnabled(false);
-addressCheckBox.addEventListener('input', (event)=>{
+elements['select-info-chk'].addEventListener('input', (event)=>{
     const {checked} = event.target
     setAddressBoxEnabled(checked);
 })
 
 // 전체 약관 동의 기능 
-termsAgreeCheckBox.addEventListener('input', (event)=>{
+elements['terms-agree-chk'].addEventListener('input', (event)=>{
     const {checked} = event.target
-    essentialCheckBox.checked = checked
-    advertiseCheckBox.checked = checked
+    elements['essential-info-chk'].checked = checked
+    elements['advertise-info-chk'].checked = checked
 })
 
 elements['signup-finish-btn'].addEventListener('click', submit)
@@ -94,19 +82,20 @@ function renderCountDown(){
 const emailSelector = document.getElementById('email-select-container');
 emailSelector.addEventListener('input', (event)=>{
     const {value} = event.target
+    const emailBackElem = elements['email-back'];
     if(value === ''){
-        elements['email-back'].removeAttribute('disabled');
-        elements['email-back'].value = '';
+        emailBackElem.removeAttribute('disabled');
+        emailBackElem.value = '';
     }
     else if(value !== 'select'){
-        elements['email-back'].setAttribute('disabled', 'true');
-        elements['email-back'].value = value;
+        emailBackElem.setAttribute('disabled', 'true');
+        emailBackElem.value = value;
     }
 })
 async function requestAuthCode(){
     const {data} = await request('/api/phone-auth', 'POST', {phone: elements['phone'].value});
     const {authCode, invalidAt} = data
-    openModal(authCode); //모달 열기
+    openModal(authCode);
     countFinishedAt = invalidAt;
 }
 async function compareAuthCode(){
@@ -122,7 +111,6 @@ async function compareAuthCode(){
 }
 
 // 인증번호 생성 관련 모달 함수
-
 elements['phone-auth-btn'].addEventListener('click', requestAuthCode);
 elements['number-submit-btn'].addEventListener('click', compareAuthCode);
 
