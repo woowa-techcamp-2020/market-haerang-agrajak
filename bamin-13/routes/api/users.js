@@ -13,7 +13,7 @@ router.post('/login', function(req, res, next) {
     res.render('error', {message: MSG.NO_USER});
   }
   else if(user.password === password){
-    // TODO: 로그인 세션 관리
+    req.session.id = id
     res.redirect('/')
   }
   else{
