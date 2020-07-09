@@ -99,12 +99,13 @@ head
             p 광고성 정보 수신동의(선택)
         #advertise-terms-info
             .container-2
-                li(style='text-decoration:none') 만 14세 이상 회원만 가입 가능합니다.
+                li(style='text-decoration:none') 
+                  a(href='https://ceo.baemin.com/#/policy/history?position=collectionAndUsageNormal')  만 14세 이상 회원만 가입 가능합니다.
                 li(style='list-style:none') 내용보기
       #finish-signup
         input#signup-finish-btn.form-item(value='가입완료')
 
-  #auth-number-modal.modal-container
+  #auth-number-modal.modal-container.hidden
     #auth-modal-overlay.modal-overlay
     #auth-modal-content.modal-content
       p 인증번호를 확인해주세요
