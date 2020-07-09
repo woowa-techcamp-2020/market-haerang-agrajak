@@ -13,7 +13,10 @@ router.post('/login', function(req, res, next) {
     res.render('error', {message: MSG.NO_USER});
   }
   else if(user.password === password){
-    req.session.id = id
+    req.session.user = {
+      id: user.id,
+      name: user.name
+    }
     res.redirect('/')
   }
   else{
@@ -21,6 +24,10 @@ router.post('/login', function(req, res, next) {
   }
 });
 
+router.get('/logout', function(req, res, next){
+  req.session.user = undefined;
+  res.send(success(200,''));
+})
 router.post('/signup', function(req, res, next) {
   const {id, name, password, emailFront, emailBack, phone, authNumber, postalCode, address, detailAddress} = req.body;
   const email = emailFront+'@'+emailBack;

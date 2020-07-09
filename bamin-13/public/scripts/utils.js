@@ -21,11 +21,6 @@ function validatePasswordChk(password, passwordChk){
   return true;
 }
 
-const form = document.forms[0]
-const elements = form.elements
-
-form.addEventListener('focusout', validateForms);
-
 function request(url, method, data) {
   return new Promise((resolve, reject)=>{
       const http = new XMLHttpRequest();
@@ -46,6 +41,13 @@ function request(url, method, data) {
       http.send(JSON.stringify(data))
   })
 }
+
+if(document.forms.length){
+  var form = document.forms[0]
+  var elements = form.elements  
+  form.addEventListener('focusout', validateForms);
+}
+
 
 async function validateForms(event){
     if(event){

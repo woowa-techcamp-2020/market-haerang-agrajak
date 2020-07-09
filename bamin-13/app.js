@@ -16,7 +16,7 @@ app.use(session({
   secret: 'baemin',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
+  cookie: { secure: false }
 }));
 app.use(logger('dev'));
 app.use(express.json());
