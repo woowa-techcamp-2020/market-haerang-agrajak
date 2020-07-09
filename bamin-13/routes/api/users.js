@@ -43,7 +43,7 @@ router.post('/signup', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res){
-  if(woowaDB.findUser(id)){
+  if(woowaDB.findUser(req.params.id)){
     res.send(fail(200, MSG.ALREADY_ID));
   }
   else
