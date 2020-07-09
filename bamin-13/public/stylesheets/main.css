@@ -114,7 +114,7 @@ small > a {
 .hidden {
     display: none;
 }
-.red {
+.red-box {
     border: 1px solid red;
 }
 .alert {
