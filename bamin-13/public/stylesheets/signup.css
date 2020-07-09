@@ -32,6 +32,7 @@ box-sizing: border-box;
     min-height:600px;
     font-size:1em;
     padding:20px;
+    outline: white;
     justify-content:center;
     align-items:flex-start;
 }
@@ -48,6 +49,7 @@ box-sizing: border-box;
     border: 1px solid #DEE2EB;
     margin:0.5em 0;
     padding:7px;
+    outline: white;
 }
 
 
@@ -159,6 +161,7 @@ box-sizing: border-box;
     color:#fff;
     background:#1A7CFE;
     font-size:16px;
+    text-align: center;
 }
 
 /* alert-msg  */

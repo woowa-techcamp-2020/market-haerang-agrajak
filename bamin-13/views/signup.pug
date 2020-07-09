@@ -6,7 +6,6 @@ head
   link(rel='stylesheet' href='/stylesheets/modal.css')
   script(src='/scripts/utils.js' defer)
   script(src='/scripts/signup.js' defer)
-  script(src='/scripts/modal.js' defer)
   script(src='https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js')
   title Signup page
 
@@ -21,22 +20,22 @@ head
 
       div 필수 정보를 입력해주세요.
       #id-container
-        input#id.form-item(name="id" type='text' placeholder='아이디* (4~20자)')
-        #id-alert.alert-msg.hidden 아이디는 4-20자의 영소문자, 숫자, 특수기호(-, _)만 사용가능합니다.
+        input#id.form-item(name="id" type='text' placeholder='아이디* (4~20자)' alert="id-alert")
+        #id-alert.alert-msg.hidden 
 
       #password-container
-        input#password.form-item(name="password" type='password' placeholder='비밀번호* (영문+숫자,8~20자)')
-        #password-alert.alert-msg.hidden 비밀번호는 영문과 숫자를 포함하여 8~20자로 입력해주세요.
+        input#password.form-item(name="password" type='password' placeholder='비밀번호* (영문+숫자,8~20자)' alert="password-alert")
+        #password-alert.alert-msg.hidden 
         div
-        input#password-chk.form-item(type='password' placeholder='비밀번호 재확인*')
-        #password-chk-alert.alert-msg.hidden  비밀번호와 일치하지 않습니다. 다시 입력해주세요.
+        input#password-chk.form-item(type='password' placeholder='비밀번호 재확인*' alert="password-chk-alert")
+        #password-chk-alert.alert-msg.hidden  
 
       #email-container
         .container
-            input#email-front.email-item(name="emailFront" type='text' placeholder='이메일 앞자리*')
+            input#email-front.email-item(name="emailFront" type='text' placeholder='이메일 앞자리*' alert="email-alert")
             p#email-at @
-            input#email-end.email-item(name="emailBack" type='text' placeholder='이메일 뒷자리*')
-        #email-alert.alert-msg.hidden 이메일 주소를 입력해 주세요
+            input#email-back.email-item(name="emailBack" type='text' placeholder='이메일 뒷자리*' alert="email-alert")
+        #email-alert.alert-msg.hidden 
       
       #email-select-container
         select#email-select.form-item
@@ -47,22 +46,22 @@ head
             option(value='') daum.net
     
       #name-container
-        input#name.form-item(name="name" type='text' placeholder='이름*')
-        #name-alert.alert-msg.hidden 이름은 영어와 한글만 사용가능합니다.
+        input#name.form-item(name="name" type='text' placeholder='이름*' alert="name-alert")
+        #name-alert.alert-msg.hidden 
 
       #phone-box
         .container
-            input#phone.item-2-input(name="phone" type='text' placeholder='휴대폰*')
+            input#phone.item-2-input(name="phone" type='text' placeholder='휴대폰*' alert="valid-number-alert")
             input#phone-auth-btn.item-2-btn(value='인증받기')
-        #valie-number-alert.alert-msg.hidden 유효한 핸드폰 번호가 아닙니다.
+        #valid-number-alert.alert-msg.hidden 유효한 핸드폰 번호가 아닙니다.
 
     
       #code-box.hidden
         .container
-            input#auth-number-input.item-2-input(name="authNumber" type='text' placeholder='인증번호 6자리 입력')
+            input#auth-number-input.item-2-input(name="authNumber" type='text' placeholder='인증번호 6자리 입력' alert="number-alert")
             div#auth-timer 
             input#number-submit-btn.item-2-btn(value='확인')
-        #number-alert.alert-msg.hidden 인증번호를 입력해주세요.
+        #number-alert.alert-msg.hidden 
 
       #select-address
         .container-2
@@ -84,8 +83,10 @@ head
 
       #essential
         .container-2
-            input#essential-info-chk(type='checkbox')
+            input#essential-info-chk(type='checkbox' alert="essential-alert")
             p 필수 항목에 동의합니다.
+        #essential-alert.alert-msg
+
 
         #essential-detail
             .container-2
@@ -101,7 +102,7 @@ head
                 li(style='text-decoration:none') 만 14세 이상 회원만 가입 가능합니다.
                 li(style='list-style:none') 내용보기
       #finish-signup
-        input#signup-finish-btn.form-item(type='submit' value='가입완료')
+        input#signup-finish-btn.form-item(value='가입완료')
 
   #auth-number-modal.modal-container.hidden
     #auth-modal-overlay.modal-overlay
