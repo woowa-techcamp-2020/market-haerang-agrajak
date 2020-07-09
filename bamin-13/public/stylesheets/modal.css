@@ -1,6 +1,7 @@
 
 
 .modal-container{
+    display:block;
     position:fixed;
     top:0;
     left:0;
@@ -11,6 +12,7 @@
     align-items:center;
     
 } 
+
 
 .modal-overlay{
     
@@ -44,10 +46,6 @@
 
 }
 
-#a,#b
-{
-    wid,hei
-}
 
 #close-modal-btn{
     background:#1A7CFE;
@@ -76,3 +74,4 @@
     display:none;
     
 }
+

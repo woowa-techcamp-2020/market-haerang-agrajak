@@ -81,7 +81,16 @@ box-sizing: border-box;
     border:1px solid #BFC4D0;
     cursor:pointer;
     text-align:center;
-    /* margin:0.5em 0; */
+}
+
+.blue-btn{
+    height:47px;
+    width:110px;
+    font-weight:bold;
+    color:#1A7CFE;
+    cursor:pointer;
+    text-align: center;
+    border:1px solid #1A7CFE;
 }
 
 #code-box .container{
@@ -122,10 +131,28 @@ box-sizing: border-box;
 
 #essential-detail .container-2{
     justify-content: flex-end;
+    height:1em;
+}
+
+#essential-detail ul{
+    text-decoration: underline;
+    padding: 0 5px;
+    color:darkgray;
+    margin:0;
+}
+#advertise-terms-info .container-2{
+    height:1em;
+    margin:0.5em 0 2em;
 }
 
 #advertise-terms-info li{
-    margin:0 1em;
+    color:darkgray;
+    font-size:0.8em;
+}
+
+#advertise-terms-info li:nth-child(2){
+    text-decoration: underline;
+    margin-left:1em;
 }
 
 #signup-finish-btn{
@@ -134,9 +161,19 @@ box-sizing: border-box;
     font-size:16px;
 }
 
+/* alert-msg  */
+.alert-msg{
+    color:red;
+    font-size:0.8em;
+}
+
 /* modal  동작 */
 
-.visible{
-    display:block;
-    
+#auth-timer{
+    color:red;
+    font-size:0.8em;
+}
+
+.red-box{
+    border:1px solid red;
 }
