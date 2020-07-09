@@ -4,13 +4,18 @@ head
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   link(rel='stylesheet' href='/stylesheets/main.css')
   script(src='/scripts/main.js' defer='')
+  title 메인
 body
-  #main-container
-    label#login-label 사장님 로그인 해주세요!
-    button(onclick="location.href='/login'" type='button') 사장님 로그인
-    #main-addons
-      a.addons#search 아이디 / 비밀번호 찾기 
-      label | 
-      a.addons#signup(href='/signup') 회원가입
+  .main-container
+    .row
+      label#login-label 사장님, 로그인 해주세요!
+    .row
+      button.large-btn(onclick="location.href='/login'" type='button') 배민사장님광장 로그인
+    .row.has-addons
+      .addons
+      .addons
+        a.addons#search 아이디 / 비밀번호 찾기 
+        a.addons |
+        a.addons#signup(href='/signup') 회원가입
 
     
