@@ -9,75 +9,103 @@ head
   script(src='/scripts/modal.js' defer)
   script(src='https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js')
   title Signup page
+
 .wrapper
   .signup-container
+
     h1.signup-title 배민
       img(src='./images/logo.png' style='width:32px;height:32px;margin-top:2px;')
       |사장님광장
+
     form.signup-form(action='/api/users/signup', method='post')
+
       div 필수 정보를 입력해주세요.
-      input#id.form-flex-item(name="id" type='text' placeholder='아이디* (4~20자)')
-      #id-alert.alert-message 아이디는 4-20자의 영소문자, 숫자, 특수기호(-, _)만 사용가능합니다.
-      input#password.form-flex-item(name="password" type='text' placeholder='비밀번호* (영문+숫자,8~20자)')
-      #password-alert.alert-message 비밀번호는 영문과 숫자를 포함하여 8~20자로 입력해주세요.
-      input#password-chk.form-flex-item(type='text' placeholder='비밀번호 재확인*')
-      #password-chk-alert.alert-message  비밀번호와 일치하지 않습니다. 다시 입력해주세요.
-      .email-flex-container
-        input#email-front.email-flex-item(name="emailFront" type='text' placeholder='이메일 앞자리*')
-        p#email-at @
-        input#email-end.email-flex-item(name="emailBack" type='text' placeholder='이메일 뒷자리*')
-      #email-alert.alert-message 이메일 주소를 입력해 주세요
-      select#email-select.form-flex-item
-        option(value='') 이메일 선택
-        option(value='') 직접입력
-        option(value='') naver.com
-        option(value='') gmail.com
-        option(value='') daum.net
-      input#name.form-flex-item(name="name" type='text' placeholder='이름*')
-      #name-alert.alert-message 이름은 영어와 한글만 사용가능합니다.
-      #auth.auth-container
-        input#phone.auth-flex-item(name="phone" type='text' placeholder='휴대폰*')
-        input#auth-btn.auth-flex-item(value='인증받기')
+      #id-container
+        input#id.form-item(name="id" type='text' placeholder='아이디* (4~20자)')
+        #id-alert.alert-msg.visible 아이디는 4-20자의 영소문자, 숫자, 특수기호(-, _)만 사용가능합니다.
 
-      div(style='margin:0.5em auto')
-      #auth.auth-container.hidden
-        input#auth-number-input.auth-flex-item(name="authNumber" type='text' placeholder='인증번호 6자리 입력')
-        input#number-submit-btn.auth-flex-item(value='확인')
-      #number-alert.alert-message 인증번호를 입력해주세요.
-      div(style='margin:0.5em auto')
-      .address-flex-chk-container
-        input#select-info-chk(type='checkbox')
-        p 선택 정보를 입력하시겠어요?
-        ul 내용보기
-      #postcode-box.postcode
-        .postcode-flex-container(style="margin:0")
-          input#postcode.postcode-flex-item(name="postalCode" type='text' placeholder='우편번호')
-          input#address-btn.postcode-flex-item(value='주소찾기')
-        div(style='margin-bottom:0.5em')
-        .postcode-flex-container(style="margin:0;flex-direction:column")
-          input#address.address-flex-item(name="address" type='text' placeholder='주소')
-          input#detail-address.address-flex-item(name="detailAddress" type='text' placeholder='상세주소')
-      .terms-flex-container
-        input#terms-agree-chk(type='checkbox')
-        p 전체 약관에 동의합니다.
-      .essential-flex-container
-        input#essential-info-chk(type='checkbox')
-        p 필수 항목에 동의합니다.
-      .essential-terms-info
-        ul 배민사장님광장 이용약관
-        ul 개인정보 수집이용 동의
-      .advertise-flex-container
-        input#advertise-info-chk(type='checkbox')
-        p 광고성 정보 수신동의(선택)
-      .advertise-terms-info
-        li(style='text-decoration:none')
-          | 만 14세 이상 회원만 가입 가능합니다.
-        li(style='list-style:none' ) 내용보기
-      input#signup-finish-btn.form-flex-item(type='submit' value='가입완료')
+      #password-container
+        input#password.form-item(name="password" type='text' placeholder='비밀번호* (영문+숫자,8~20자)')
+        #password-alert.alert-msg.visible 비밀번호는 영문과 숫자를 포함하여 8~20자로 입력해주세요.
+        input#password-chk.form-item(type='text' placeholder='비밀번호 재확인*')
+        #password-chk-alert.alert-msg.visible  비밀번호와 일치하지 않습니다. 다시 입력해주세요.
 
-  .modal-container.hidden
-    .modal-overlay
-    .modal-content
+      #email-container
+        .container
+            input#email-front.email-item(name="emailFront" type='text' placeholder='이메일 앞자리*')
+            p#email-at @
+            input#email-end.email-item(name="emailBack" type='text' placeholder='이메일 뒷자리*')
+        #email-alert.alert-msg.visible 이메일 주소를 입력해 주세요
+      
+      #email-select-container
+        select#email-select.form-item
+            option(value='') 이메일 선택
+            option(value='') 직접입력
+            option(value='') naver.com
+            option(value='') gmail.com
+            option(value='') daum.net
+    
+      #name-container
+        input#name.form-item(name="name" type='text' placeholder='이름*')
+        #name-alert.alert-msg.visible 이름은 영어와 한글만 사용가능합니다.
+
+      #phone-box
+        .container
+            input#phone.item-2-input(name="phone" type='text' placeholder='휴대폰*')
+            input#phone-auth-btn.item-2-btn(value='인증받기')
+
+    
+      #code-box
+        .container
+            input#auth-number-input.item-2-input(name="authNumber" type='text' placeholder='인증번호 6자리 입력')
+            div#auth-timer timer
+            input#number-submit-btn.item-2-btn(value='확인')
+        #number-alert.alert-msg.visible 인증번호를 입력해주세요.
+
+      #select-address
+        .container-2
+            input#select-info-chk(type='checkbox')
+            p 선택 정보를 입력하시겠어요?
+            ul 내용보기
+
+      #postcode-box
+        .container
+            input#postcode.item-2-input(name="postalCode" type='text' placeholder='우편번호')
+            input#address-btn.item-2-btn(value='주소찾기')
+        input#address.form-item(name="address" type='text' placeholder='주소')
+        input#detail-address.form-item(name="detailAddress" type='text' placeholder='상세주소')
+
+      #terms
+        .container-2
+            input#terms-agree-chk(type='checkbox')
+            p 전체 약관에 동의합니다.
+
+      #essential
+        .container-2
+            input#essential-info-chk(type='checkbox')
+            p 필수 항목에 동의합니다.
+
+        #essential-detail
+            .container-2
+                ul 배민사장님광장 이용약관
+                ul 개인정보 수집이용 동의
+
+      #advertise
+        .container-2
+            input#advertise-info-chk(type='checkbox')
+            p 광고성 정보 수신동의(선택)
+        #advertise-terms-info
+            .container-2
+                li(style='text-decoration:none')
+                | 만 14세 이상 회원만 가입 가능합니다.
+                li(style='list-style:none') 내용보기
+      #finish-signup
+        input#signup-finish-btn.form-item(type='submit' value='가입완료')
+
+  #auth-number-modal.modal-container.hidden
+    #auth-modal-overlay.modal-overlay
+    #auth-modal-content.modal-content
       p 인증번호를 확인해주세요
+      p#modal-auth-code
       input#close-modal-btn(value='확인')
 

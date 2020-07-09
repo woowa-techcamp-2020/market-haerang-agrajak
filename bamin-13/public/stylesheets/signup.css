@@ -32,219 +32,111 @@ box-sizing: border-box;
     min-height:600px;
     font-size:1em;
     padding:20px;
-    align-items: center;
-    justify-content: flex-start;
+    justify-content:center;
+    align-items:flex-start;
 }
 
-.signup-form div{
-    
-    align-self:flex-start;
+/* 첫 번째 indentation div */
+.signup-form > div{
     margin: 0 2em;
-
 }
 
-.form-flex-item, #email-select, .address-flex-item{
+.form-item{
     
     height:47px;
-    width:400px;
+    width:420px;
     border: 1px solid #DEE2EB;
-    margin: 1em 2em;
+    margin:0.5em 0;
     padding:7px;
 }
 
 
-
-.email-flex-container{
+.container{
     display:flex;
     height:47px;
-    width:400px;
+    width:420px;
     justify-content: space-between;
-    margin: 1em 2em;
+    margin: 0.5em 0;
 }
 
-.email-flex-item{
-    width:180px;
+.email-item{
+    width:190px;
+    padding:7px;
     border: 1px solid #DEE2EB;
-    padding:7px;
-    
 }
 
-#email-at{
-    margin: auto 0;
-}
-
-.email-select option{
-    font-size:1em;
-    padding:7px;
-}
-
-.auth-container{
-    display:flex;
+.item-2-input{
     height:47px;
-    width:400px;
-    justify-content: space-between;
-    margin:1em 2em;
-
-}
-
-.auth-flex-item, .postcode-flex-item{
+    width:300px;
     border: 1px solid #DEE2EB;
+    /* margin:0.5em 0; */
     padding:7px;
 }
 
-#phone, #postcode, #auth-number-input{
-    width:270px;
-}
-
-#auth-btn, #address-btn,#number-submit-btn{
-    width:120px;
-    background:none;
+.item-2-btn{
+    height:47px;
+    width:110px;
     color:#BFC4D0;
     font-weight: bold;
     border:1px solid #BFC4D0;
     cursor:pointer;
     text-align:center;
+    /* margin:0.5em 0; */
 }
 
-#password-chk,#name {
-    margin-bottom:2em;
+#code-box .container{
+    position: relative;
 }
 
-#email-select{
-    margin-top:20px;
+#auth-timer{
+    position:absolute;
+    top:17px;
+    right:130px;
 }
 
-.postcode{
-    width:400px;
+.container-2{
+    display:flex;
+    height:47px;
+    width:420px;
+    align-items: center;
+}
+
+.container-2 input{
+    height:1.5em;
+    width:1.5em;
+}
+
+.container-2 p{
+    padding:7px;
+    margin:0;
+}
+
+#postcode-box{
     display:flex;
     flex-direction:column;
 }
 
-.address-flex-chk-container{
-    width:400px;
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-   
+#terms p{
+    font-weight:bold;
 }
 
-.address-flex-chk-container input{
-    width:20px;
-    height:20px;
-    margin:0;
+#essential-detail .container-2{
+    justify-content: flex-end;
 }
 
-.address-flex-chk-container p{
-    padding: 0 5px;
-    
-}
-
-.address-flex-chk-container ul{
-    text-decoration: underline;
-    padding: 0 10px;
-    color:#BFC4D0;
-    font-size:12px;
-}
-
-.postcode-flex-container, .address-flex-container{
-    display:flex;
-    min-height:47px;
-    width:400px;
-    justify-content: space-between;
-    margin: 0.5em 0em;
-}
-
-
-.address-flex-item{
-    /* margin:0.5em 2em; */
-    margin: 0.5em 0em;
+#advertise-terms-info li{
+    margin:0 1em;
 }
 
 #signup-finish-btn{
-    background:#1A7CFE;
     color:#fff;
-    font-weight: bold;
+    background:#1A7CFE;
     font-size:16px;
-    cursor:pointer;
 }
 
-.terms-flex-container,.essential-flex-container,
-.advertise-flex-container{
-    width:400px;
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-}
+/* modal  동작 */
 
-.terms-flex-container input, .essential-flex-container input,
-.advertise-flex-container input{
-    width:20px;
-    height:20px;
-    margin:0;
-}
-
-.terms-flex-container p,.essential-flex-container p,
-.advertise-flex-container p{
-    padding: 0 5px;
+.visible{
+    display:block;
     
 }
-
-.essential-terms-info ul{
-    text-decoration: underline;
-    padding: 0 10px;
-    color:#BFC4D0;
-    font-size:12px;
-}
-
-.essential-terms-info,.advertise-terms-info {
-    width:400px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.essential-terms-info ul{
-    margin-top:0;
-    color:#919191;
-    font-size:14px;
-}
-
-.advertise-terms-info{
-   
-    color:#BFC4D0;
-    font-size:12px;
-    color:#919191;
-    justify-content: flex-start;
-
-}
-
-.advertise-terms-info li:nth-child(1){
-    text-decoration:none;
-    padding: 0 4px;
-    height:47px;
-
-}
-
-.advertise-terms-info li:nth-child(2){
-    list-style-type:none;
-    padding:0 4px;
-    height:47px;
-    text-decoration:underline;
-}
-
-.alert-message:not(.is-visible){
-    display:none;
-}
-.alert-message{
-    color:red;
-    font-size:14px;
-    padding:7px;
-}
-
-.is-visible {
-    display: block
-}
-.red-box{
-    border:1px solid red;
-}
-
