@@ -4,24 +4,25 @@ head
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   link(rel='stylesheet' href='/stylesheets/main.css')
   script(src='/scripts/main.js' defer='')
+  title 로그인
 body
-    .wrapper
-    form.main-container(action='/api/users/login' method='post')
-      .row.center
-        img(src='./images/logo-ceo.png')
-      .row
-        input.form#id(name="id" placeholder='아이디')
-      .row
-        input.form#password(name="password" placeholder='비밀번호')
-      .row.has-addons
-        .addons
-          input(type="checkbox") 
-          label 아이디 저장
-        .addons
-          a.addons#search 아이디 / 비밀번호 찾기 
-          a.addons | 
-          a.addons#signup(href='/signup') 회원가입
-      .row
-        input.large-btn(type='submit' value='로그인') 
+  .wrapper
+  form.main-container(action='/api/users/login' method='post')
+    .row.center
+      img(src='./images/logo-ceo.png')
+    .row
+      input.form#id(name="id" placeholder='아이디')
+    .row
+      input.form#password(name="password" placeholder='비밀번호')
+    .row.has-addons
+      .addons
+        input(type="checkbox") 
+        label 아이디 저장
+      .addons
+        a.addons#search 아이디 / 비밀번호 찾기 
+        a.addons | 
+        a.addons#signup(href='/signup') 회원가입
+    .row
+      input.large-btn(type='submit' value='로그인') 
 
-    
+  

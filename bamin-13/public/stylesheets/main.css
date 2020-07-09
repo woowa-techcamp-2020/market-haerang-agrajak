@@ -17,7 +17,8 @@ body {
     justify-content: center;
     align-items: center;
     align-content: center;
-    height: 100%;
+    min-height: 100%;
+    margin: 0 0;
 }
 .main-container, .login-container {
     display: flex;
@@ -71,6 +72,7 @@ body {
 .guide {
     text-decoration: none;
     font-weight: bold;
+    font-size: 1.3em;
     color:#1A7CFE;
 }
 .large-btn{
