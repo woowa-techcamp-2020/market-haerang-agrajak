@@ -58,9 +58,9 @@ elements['terms-agree-chk'].addEventListener('input', (event)=>{
 
 // 가입 완료 버튼 눌렀을 때 
 elements['signup-finish-btn'].addEventListener('click', submit)
-function submit(){
+async function submit(){
     // TODO: validation 한번 더하기 (빈 칸 있으면 찾아내기) -> Focus 해주기
-    if(validateForms())
+    if(await validateForms())
         form.submit();
 }
 var countFinishedAt = 0;

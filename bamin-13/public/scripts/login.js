@@ -6,8 +6,8 @@ if(savedId){
     elements['id'].value = savedId;
 }
 
-function submit(){
-    if(validateForms()){
+async function submit(){
+    if(await validateForms()){
         const idChecked = elements['id-chkbox'].checked
         if(idChecked){
             storage.setItem('id', elements['id'].value)
