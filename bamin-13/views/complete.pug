@@ -5,28 +5,29 @@ head
   link(rel='stylesheet' href='/stylesheets/main.css')
   script(src='/scripts/main.js' defer='')
 body
-    form.main-container
-      .rows.large-text
-        .row 배민상회사장님광장
-        .row 회원이 되셨습니다.
-      .wrapper
+  form.main-container
+    .rows
+      .row.center
+        img(src='./images/logo-ceo.png')
+      .row.center.large-text 회원이 되셨습니다.
+    .wrapper
+    .row
+      a.guide(href='/') 메인으로
+    .rows.table
       .row
-        a.guide(href='/') 메인으로
-      .rows.table
-        .row
-          span.th 이름
-          span.td=name
-        .row
-          span.th 아이디
-          span.td=id
-        .row
-          span.th 이메일
-          span.td=email
-        .row
-          span.th 핸드폰
-          span.td=phone
+        span.th 이름
+        span.td=name
       .row
-        small - 위 내용은 #[a 내 정보 관리]에서 수정하실 수 있습니다.
-      
-
+        span.th 아이디
+        span.td=id
+      .row
+        span.th 이메일
+        span.td=email
+      .row
+        span.th 핸드폰
+        span.td=phone
+    .row
+      small - 위 내용은 #[a 내 정보 관리]에서 수정하실 수 있습니다.
     
+
+  

@@ -9,6 +9,16 @@ a.button {
 label#login-label {
     display: block;
 }
+html {
+    height: 100%;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+}
 .main-container, .login-container {
     display: flex;
     justify-content: flex-start;
@@ -23,6 +33,16 @@ label#login-label {
 .row, .rows {
     display: flex;
     padding: 4px 0px;
+    justify-content: flex-start;
+}
+.row.center {
+    justify-content: center;
+}
+
+.row > img {
+    height: 2.5em;
+    width: auto;
+    padding: 15px 0;
 }
 .rows {
     flex-direction: column;
