@@ -88,8 +88,8 @@ function renderCountDown(){
         numberAlert.style.color='blue';
         timer.innerText=''
         numberInputText.classList.remove('red-box');
-        document.querySelector('#phone-auth-btn').classList.remove('blue-btn');
-        document.querySelector('#phone-auth-btn').classList.add('item-2-btn');
+        elements['phone-auth-btn'].classList.remove('blue-btn');
+        elements['phone-auth-btn'].classList.add('item-2-btn');
     }
     else if(sec>0){
         setTimeout(renderCountDown, 500);
