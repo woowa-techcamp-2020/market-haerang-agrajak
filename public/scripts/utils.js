@@ -25,6 +25,10 @@ function validatePhone(phone){
   return /^\d{3}-\d{3,4}-\d{4}$/.test(phone)
 }
 
+function validateAuthCode(code){
+  return /^\d{6}$/.test(code)
+}
+
 function request(url, method, data) {
   return new Promise((resolve, reject)=>{
       const http = new XMLHttpRequest();
@@ -147,11 +151,14 @@ async function validate(elem){
   }
   if(id == 'auth-number-input'){
     const authStatus = elem.getAttribute('authed')
-    if(authStatus == undefined){
-      message = "인증을 시도해주세요.";
-    }
-    else if(value.length == 0){ 
+    if(value.length == 0){ 
       message = '인증번호를 입력해주세요.'
+    }
+    else if(!validateAuthCode(value)){
+      message = "인증번호는 6자리 숫자입니다.";
+    }
+    else if(authStatus == undefined){
+      message = "인증을 시도해주세요.";
     }
     else if(authStatus === 'pending'){
       message = "인증 대기중 입니다.";
