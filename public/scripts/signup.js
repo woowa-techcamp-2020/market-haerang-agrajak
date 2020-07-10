@@ -20,6 +20,8 @@ const postalBox = new daum.Postcode({
 
 elements['address-btn'].addEventListener('click', ()=>{
     postalBox.open();
+    elements['address-btn'].classList.remove('blue-btn');
+    elements['address-btn'].classList.add('item-2-btn');
 })
 
 // 주소 선택 여부 따른 입력 가능/불가 기능 
@@ -154,4 +156,5 @@ async function compareAuthCode(){
 // 인증번호 생성 관련 모달 함수
 elements['phone-auth-btn'].addEventListener('click', requestAuthCode);
 elements['number-submit-btn'].addEventListener('click', compareAuthCode);
+
 
