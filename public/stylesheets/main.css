@@ -24,7 +24,7 @@ body {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    width: 320px;
+    width: 390px;
     padding: 30px;
     border: 1px solid darkgray;
 }
@@ -40,7 +40,7 @@ body {
     justify-content: center;
 }
 
-.row > img {
+.row >   {
     height: 2.5em;
     width: auto;
     padding: 15px 0;
@@ -121,4 +121,11 @@ small > a {
     display: block;
     color: red;
     font-size: 0.8em;
+}
+
+#congrats{
+    position:fixed;
+    bottom:0;
+    right:100px;
+    height:500px;
 }
