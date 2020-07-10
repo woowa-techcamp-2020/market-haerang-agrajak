@@ -13,6 +13,7 @@
     "express": "~4.16.1",
     "express-session": "^1.17.1",
     "http-errors": "~1.6.3",
+    "install": "^0.13.0",
     "morgan": "~1.9.1",
     "pbkdf2": "^3.1.1",
     "pug": "2.0.0-beta11"
