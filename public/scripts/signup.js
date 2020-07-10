@@ -60,8 +60,11 @@ elements['terms-agree-chk'].addEventListener('input', (event)=>{
 elements['signup-finish-btn'].addEventListener('click', submit)
 async function submit(){
     // TODO: validation 한번 더하기 (빈 칸 있으면 찾아내기) -> Focus 해주기
-    if(await validateForms())
+    if(await validateForms()){
+        elements['email-back'].removeAttribute('disabled')
         form.submit();
+
+    }
 }
 var countFinishedAt = 0;
 
