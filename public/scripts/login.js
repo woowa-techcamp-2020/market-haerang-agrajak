@@ -6,7 +6,6 @@ if(savedId){
     elements['id'].value = savedId;
     elements['id-chkbox'].checked = true;
 }
-
 async function submit(){
     if(await validateForms()){
         const idChecked = elements['id-chkbox'].checked
@@ -16,8 +15,13 @@ async function submit(){
         else {
             storage.removeItem('id')
         }
-        form.submit();    
+        form.submit();
     }
 }
-const loginButton = elements['login-btn']
-loginButton.addEventListener('click', submit);
+elements['login-btn'].addEventListener('click', submit);
+// 엔터키 눌렀을 때 submit!
+form.addEventListener('keydown', (event)=>{
+    if(event.keyCode == 13){
+        submit();
+    }
+})
