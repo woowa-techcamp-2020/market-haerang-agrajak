@@ -49,6 +49,7 @@ router.post('/signup',async (req, res, next) =>{
   }
   catch(error){
     res.render('error', {message: errMessage, error});
+    return
   }
   res.render('complete', {id, name, email, phone})
 });
