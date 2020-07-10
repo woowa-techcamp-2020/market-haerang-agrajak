@@ -65,7 +65,6 @@ async function submit(){
     if(await validateForms()){
         elements['email-back'].removeAttribute('disabled')
         form.submit();
-
     }
 }
 var countFinishedAt = 0;
@@ -131,7 +130,7 @@ modalOverlay.addEventListener('click',closeModal);
 function closeModal(){
     modal.classList.add('hidden');
     codeBox.classList.remove('hidden');
-    validateQueue([elements['auth-number-input']])
+    validateElement(elements['auth-number-input'])
     blueBtn.forEach(v=>{
         if(!v.classList.contains('address-btn')){
             v.classList.remove('item-2-btn');
