@@ -4,7 +4,7 @@ const blueBtn = document.querySelectorAll('.item-2-btn');
 const modal = document.querySelector('.modal-container');
 const closeModalBtn = document.getElementById('close-modal-btn')
 const modalOverlay = document.querySelector('.modal-overlay');
-
+const numberAlert=document.querySelector('#number-alert')
 
 //주소 찾기
 const codeBox = document.getElementById('code-box');
@@ -75,7 +75,7 @@ function renderCountDown(){
         numberAlert.innerText = '인증되었습니다'
         numberAlert.style.color='blue';
         timer.innerText=''
-        numberInputText.classList.remove('red-box');
+        elements['auth-number-input'].classList.remove('red-box');
         elements['phone-auth-btn'].classList.remove('blue-btn');
         elements['phone-auth-btn'].classList.add('item-2-btn');
     }
