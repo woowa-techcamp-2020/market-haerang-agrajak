@@ -79,6 +79,9 @@ function renderCountDown(){
         elements['auth-number-input'].classList.remove('red-box');
         elements['phone-auth-btn'].classList.remove('blue-btn');
         elements['phone-auth-btn'].classList.add('item-2-btn');
+        elements['number-submit-btn'].classList.remove('blue-btn');
+        elements['number-submit-btn'].classList.add('item-2-btn');
+        
     }
     else if(sec>0){
         setTimeout(renderCountDown, 500);
@@ -152,31 +155,3 @@ async function compareAuthCode(){
 elements['phone-auth-btn'].addEventListener('click', requestAuthCode);
 elements['number-submit-btn'].addEventListener('click', compareAuthCode);
 
-
-
-// 파란색 버튼 클릭시 원래 스타일로 돌아옴 
-
-// blueBtn.forEach(v=>{
-//     if(!v.classList.contains('address-btn')){
-//         v.classList.remove('item-2-btn');
-//         v.classList.add('blue-btn');
-//         authBtn.value='재전송';
-//     }
-// })
-
-
-
-function authComplete(){
-    if(true){// true 대신 인증번호 확인하는 함수 필요
-
-        blueBtn.forEach(v=>{
-            v.addEventListener('click',()=>{
-                v.classList.remove('blue-btn');
-                v.classList.add('item-2-btn');
-            })
-        })
-
-    }
-
-}
-authComplete();
