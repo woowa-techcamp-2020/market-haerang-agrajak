@@ -14,20 +14,18 @@ router.post('/login', async function(req, res, next) {
     res.render('error', {message: MSG.NO_USER});
     return;
   }
-    const hashed = await encrypt.encryptWithSalt(password, user.salt);
-    console.log(hashed,user.hashedPassword);
+  const hashed = await encrypt.encryptWithSalt(password, user.salt);
 
-
-    if(user.password===hashed){
-      req.session.user = {
-        id: user.id,
-        name: user.name
-      }
-      res.redirect('/')
+  if(user.password===hashed){
+    req.session.user = {
+      id: user.id,
+      name: user.name
     }
-    else{
-      res.render('error', {message: MSG.LOGIN_FAIL + " " + MSG.MISMATCH_PW})
-    };
+    res.redirect('/')
+  }
+  else{
+    res.render('error', {message: MSG.LOGIN_FAIL + " " + MSG.MISMATCH_PW})
+  };
 });
 
 router.get('/logout', function(req, res, next){
@@ -45,7 +43,6 @@ router.post('/signup',async (req, res, next) =>{
       res.render('error', {message: MSG.ALREADY_ID})
       return;
     }
-    // TODO: 해싱된 비밀번호 추가
     const { salt, hashed } = await encrypt.encrypt(password);
     const hashedPassword = hashed;
     woowaDB.addUser({id, name, password: hashedPassword,salt, email, phone, postalCode, address, detailAddress})
