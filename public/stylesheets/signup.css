@@ -1,8 +1,9 @@
-input, select
+input
 {
-box-sizing: border-box;
--moz-box-sizing: border-box;
--webkit-box-sizing: border-box;
+    outline:none;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 .wrapper{
@@ -122,6 +123,11 @@ box-sizing: border-box;
     margin:0;
 }
 
+#select-info-chk ul a{
+    color:darkgray;
+    font-size:0.8em;
+}
+
 #postcode-box{
     display:flex;
     flex-direction:column;
@@ -152,6 +158,13 @@ box-sizing: border-box;
     font-size:0.8em;
 }
 
+.detail-style:link, .detail-style:hover,
+.detail-style:active, .detail-style:visited{
+    text-decoration:underline;
+    color:darkgray;
+    font-size:0.8em;
+}
+
 #advertise-terms-info li:nth-child(2){
     text-decoration: underline;
     margin-left:1em;
@@ -160,7 +173,6 @@ box-sizing: border-box;
 #signup-finish-btn{
     color:#fff;
     background:#1A7CFE;
-    font-size:16px;
     text-align: center;
 }
 
@@ -182,4 +194,8 @@ box-sizing: border-box;
 
 .red-box{
     border:1px solid red;
+}
+
+.normal-font:hover{
+    font-size:1em;
 }

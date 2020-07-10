@@ -6,6 +6,7 @@ head
   link(rel='stylesheet' href='/stylesheets/modal.css')
   script(src='/scripts/utils.js' defer)
   script(src='/scripts/signup.js' defer)
+  script(src='/scripts/detailModal.js' defer)
   script(src='https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js')
   title Signup page
 
@@ -67,7 +68,8 @@ head
         .container-2
             input#select-info-chk(type='checkbox')
             p 선택 정보를 입력하시겠어요?
-            ul 내용보기
+            ul 
+              a.detail-style(href='https://ceo.baemin.com/#/policy/history?position=collectionAndUsageNormal') 내용보기
 
       #postcode-box
         .container
@@ -90,8 +92,10 @@ head
 
         #essential-detail
             .container-2
-                ul 배민사장님광장 이용약관
-                ul 개인정보 수집이용 동의
+                ul.detail-style.normal-font
+                  a.detail-style(href='https://ceo.baemin.com/#/policy/history?position=terms') 배민사장님광장 이용약관
+                ul.detail-style.normal-font 
+                  a.detail-style(href="https://ceo.baemin.com/#/policy/history?position=collectionAndUsageNormal") 개인정보 수집이용 동의
 
       #advertise
         .container-2
@@ -99,9 +103,8 @@ head
             p 광고성 정보 수신동의(선택)
         #advertise-terms-info
             .container-2
-                li(style='text-decoration:none') 
-                  a(href='https://ceo.baemin.com/#/policy/history?position=collectionAndUsageNormal')  만 14세 이상 회원만 가입 가능합니다.
-                li(style='list-style:none') 내용보기
+                li(style='text-decoration:none') 만 14세 이상 회원만 가입 가능합니다.
+                li#age-detail(style='list-style:none') 내용보기
       #finish-signup
         input#signup-finish-btn.form-item(value='가입완료')
 
@@ -111,4 +114,11 @@ head
       p 인증번호를 확인해주세요
       p#modal-auth-code
       input#close-modal-btn(value='확인')
+
+
+  #detail-modal.modal-container.hidden
+    #detail-modal-overlay.modal-overlay
+    #detail-modal-content.modal-content
+      p 정보통신망 이용촉진 및 정보보호 등에 관한 법률에서는 만 14세 미만 아동의 개인정보 수집 시 법정대리인 동의를 받도록 규정하고 있으며, 만 14세 미만 아동이 법정대리인 동의없이 회원가입을 하는 경우 회원탈퇴 또는 서비스 이용이 제한 될 수 있습니다.
+      input#close-detail-modal-btn(value='확인')
 
