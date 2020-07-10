@@ -117,6 +117,10 @@ async function validate(elem){
   if(id == 'password'){
       if(value.length == 0) message = '비밀번호를 입력해주세요';
       else if(!validatePassword(value)) message = '비밀번호는 영문과 숫자를 포함하여 8~20자로 입력해주세요.'
+      else if(form.getAttribute('type') == 'signup'){ // 회원가입 페이지 일때만 비밀번호 완료 폼도 체크한다.
+        // 비밀번호 확인도 체크하기
+        await validateQueue([elements['password-chk']])
+      }
   }
   if(id == 'password-chk'){
       if(value.length == 0) message = '확인 비밀번호를 입력해주세요';
@@ -142,9 +146,26 @@ async function validate(elem){
     }
   }
   if(id == 'auth-number-input'){
-    if(value.length == 0) message = '인증번호를 입력해주세요.'
-    else if(elem.getAttribute('authed') !== 'true'){
-      message = "인증에 실패하였습니다. 재시도 해주세요."
+    const authStatus = elem.getAttribute('authed')
+    if(authStatus == undefined){
+      message = "인증을 시도해주세요.";
+    }
+    else if(value.length == 0){ 
+      message = '인증번호를 입력해주세요.'
+    }
+    else if(authStatus === 'pending'){
+      message = "인증 대기중 입니다.";
+    }
+    else if(authStatus === 'false'){
+      message = "인증에 실패하였습니다.";
+    }
+    else if(authStatus === 'true'){
+      ret = true;
+      message = "인증에 성공하였습니다!";
+    }
+
+    if(message !== ''){
+      document.getElementById('code-box').classList.remove('hidden')
     }
   }
   if(id == 'essential-info-chk'){
