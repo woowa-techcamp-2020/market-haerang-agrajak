@@ -95,9 +95,9 @@ emailSelector.addEventListener('input', (event)=>{
         emailBackElem.removeAttribute('disabled');
         emailBackElem.value = '';
     }
-    else if(value !== 'select'){
+    else{
         emailBackElem.setAttribute('disabled', 'true');
-        emailBackElem.value = value;
+        emailBackElem.value = (value === 'select') ? '' : value;
     }
 })
 async function requestAuthCode(){
