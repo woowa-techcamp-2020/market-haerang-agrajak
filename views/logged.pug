@@ -9,8 +9,12 @@ head
 body
   .main-container
     .row
-      label#login-label #{name} 사장(#{id})님, 반갑습니다!
+      label#login-label.large-text #{name} 사장(#{id})님 
+    .row
+      label.large-text 반갑습니다!
     .row.has-addons
       .addons
       .addons
         a.addons#logout 로그아웃
+  
+  img#congrats(src="/images/congrats.gif")
