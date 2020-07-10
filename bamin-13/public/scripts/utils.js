@@ -117,7 +117,7 @@ async function validate(elem){
   if(id == 'password'){
       if(value.length == 0) message = '비밀번호를 입력해주세요';
       else if(!validatePassword(value)) message = '비밀번호는 영문과 숫자를 포함하여 8~20자로 입력해주세요.'
-      else {
+      else if(form.getAttribute('type') == 'signup'){ // 회원가입 페이지 일때만 비밀번호 완료 폼도 체크한다.
         // 비밀번호 확인도 체크하기
         await validateQueue([elements['password-chk']])
       }

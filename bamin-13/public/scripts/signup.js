@@ -139,7 +139,6 @@ async function compareAuthCode(){
     const authCode = elements['auth-number-input'].value
     
     const data = await request(`/api/phone-auth?phone=${phone}&authCode=${authCode}`, 'GET');
-    console.log(data)
     const {success, message} = data
     if(success){
         elements['auth-number-input'].setAttribute('authed', 'true');
@@ -166,8 +165,6 @@ elements['number-submit-btn'].addEventListener('click', compareAuthCode);
 // })
 
 
-
-// todo: 인증번호 확인 후 메세지, 버튼 
 
 function authComplete(){
     if(true){// true 대신 인증번호 확인하는 함수 필요

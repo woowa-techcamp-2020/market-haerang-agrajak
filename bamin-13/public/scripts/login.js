@@ -4,6 +4,7 @@ const storage = window.localStorage;
 const savedId = storage.getItem('id')
 if(savedId){
     elements['id'].value = savedId;
+    elements['id-chkbox'].checked = true;
 }
 
 async function submit(){
@@ -13,7 +14,7 @@ async function submit(){
             storage.setItem('id', elements['id'].value)
         }
         else {
-            storage.setItem('id', '')
+            storage.removeItem('id')
         }
         form.submit();    
     }
