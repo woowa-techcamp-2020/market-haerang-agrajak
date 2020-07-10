@@ -1,10 +1,10 @@
 
 
-const openDetailModal=(value)=>{
+function openDetailModal(value){
     document.querySelector('#detail-modal').classList.remove('hidden');
 }
 
-const closeDetailModal=()=>{
+function closeDetailModal(){
     document.querySelector('#detail-modal').classList.add('hidden');
 
 }
