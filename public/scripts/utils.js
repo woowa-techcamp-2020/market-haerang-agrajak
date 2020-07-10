@@ -25,6 +25,10 @@ function validatePhone(phone){
   return /^\d{3}-\d{3,4}-\d{4}$/.test(phone)
 }
 
+function validateEmail(str){
+  return /^([A-Za-z0-9-_.]+)$/.test(str)
+}
+
 function validateAuthCode(code){
   return /^\d{6}$/.test(code)
 }
@@ -132,9 +136,11 @@ async function validate(elem){
   }
   if(id == 'email-front'){
       if(value.length == 0) message = '이메일 아이디를 입력해주세요';
+      else if(!validateEmail(value)) message = '유효한 이메일이 아닙니다.';
   }
   if(id == 'email-back'){
     if(value.length == 0) message = '이메일 도메인을 입력해주세요';
+    else if(!validateEmail(value)) message = '유효한 도메인이 아닙니다.'
   }
   if(id == 'name'){
     if(value.length == 0) message = '이름을 입력해주세요'
