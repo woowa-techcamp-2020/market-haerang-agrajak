@@ -4,7 +4,7 @@ const blueBtn = document.querySelectorAll('.item-2-btn');
 const modal = document.querySelector('.modal-container');
 const closeModalBtn = document.getElementById('close-modal-btn')
 const modalOverlay = document.querySelector('.modal-overlay');
-
+const numberAlert=document.querySelector('#number-alert')
 
 //주소 찾기
 const codeBox = document.getElementById('code-box');
@@ -20,6 +20,8 @@ const postalBox = new daum.Postcode({
 
 elements['address-btn'].addEventListener('click', ()=>{
     postalBox.open();
+    elements['address-btn'].classList.remove('blue-btn');
+    elements['address-btn'].classList.add('item-2-btn');
 })
 
 // 주소 선택 여부 따른 입력 가능/불가 기능 
@@ -58,10 +60,12 @@ elements['terms-agree-chk'].addEventListener('input', (event)=>{
 
 // 가입 완료 버튼 눌렀을 때 
 elements['signup-finish-btn'].addEventListener('click', submit)
-function submit(){
+async function submit(){
     // TODO: validation 한번 더하기 (빈 칸 있으면 찾아내기) -> Focus 해주기
-    if(validateForms())
+    if(await validateForms()){
+        elements['email-back'].removeAttribute('disabled')
         form.submit();
+    }
 }
 var countFinishedAt = 0;
 
@@ -71,13 +75,17 @@ function renderCountDown(){
     let min = String(parseInt(sec/60)+100).substr(1,2); 
     sec = String(sec%60+100).substr(1,2)
     timer.innerText = `${min}:${sec}`
-    if(elements['auth-number-input'].getAttribute('authed')){
+    numberAlert.classList.remove('success')
+    if(elements['auth-number-input'].getAttribute('authed') === 'true'){
         numberAlert.innerText = '인증되었습니다'
-        numberAlert.style.color='blue';
+        numberAlert.classList.add('success')
         timer.innerText=''
-        numberInputText.classList.remove('red-box');
+        elements['auth-number-input'].classList.remove('red-box');
         elements['phone-auth-btn'].classList.remove('blue-btn');
         elements['phone-auth-btn'].classList.add('item-2-btn');
+        elements['number-submit-btn'].classList.remove('blue-btn');
+        elements['number-submit-btn'].classList.add('item-2-btn');
+        
     }
     else if(sec>0){
         setTimeout(renderCountDown, 500);
@@ -87,6 +95,8 @@ function renderCountDown(){
         timer.innerText = ''
     }
 }
+
+// 이메일 선택기
 const emailSelector = document.getElementById('email-select-container');
 emailSelector.addEventListener('input', (event)=>{
     const {value} = event.target
@@ -95,42 +105,32 @@ emailSelector.addEventListener('input', (event)=>{
         emailBackElem.removeAttribute('disabled');
         emailBackElem.value = '';
     }
-    else if(value !== 'select'){
+    else{
         emailBackElem.setAttribute('disabled', 'true');
-        emailBackElem.value = value;
+        emailBackElem.value = (value === 'select') ? '' : value;
     }
 })
 async function requestAuthCode(){
     const {data} = await request('/api/phone-auth', 'POST', {phone: elements['phone'].value});
+    elements['auth-number-input'].setAttribute('authed', 'pending')
     const {authCode, invalidAt} = data
     openModal(authCode);
     countFinishedAt = invalidAt;
 }
-async function compareAuthCode(){
-    const phone = elements['phone'].value
-    const authCode = elements['auth-number-input'].value
-    
-    const data = await request(`/api/phone-auth?phone=${phone}&authCode=${authCode}`, 'GET');
-    console.log(data)
-    const {success, message} = data
-    if(success){
-        elements['auth-number-input'].setAttribute('authed', 'true');
-    }
-}
 
-// 인증번호 생성 관련 모달 함수
-elements['phone-auth-btn'].addEventListener('click', requestAuthCode);
-elements['number-submit-btn'].addEventListener('click', compareAuthCode);
-
-const openModal=(value)=>{
+function openModal(value){
     modal.classList.remove('hidden');
     document.getElementById('modal-auth-code').innerText = value;
+    elements['auth-number-input'].removeAttribute('authed');
 }
 
-const closeModal=()=>{
+closeModalBtn.addEventListener('click',closeModal);
+modalOverlay.addEventListener('click',closeModal);
+
+function closeModal(){
     modal.classList.add('hidden');
     codeBox.classList.remove('hidden');
-    validateQueue([elements['auth-number-input']])
+    validateElement(elements['auth-number-input'])
     blueBtn.forEach(v=>{
         if(!v.classList.contains('address-btn')){
             v.classList.remove('item-2-btn');
@@ -141,35 +141,22 @@ const closeModal=()=>{
     renderCountDown()
 }
 
-closeModalBtn.addEventListener('click',closeModal);
-modalOverlay.addEventListener('click',closeModal);
-
-
-// 파란색 버튼 클릭시 원래 스타일로 돌아옴 
-
-// blueBtn.forEach(v=>{
-//     if(!v.classList.contains('address-btn')){
-//         v.classList.remove('item-2-btn');
-//         v.classList.add('blue-btn');
-//         authBtn.value='재전송';
-//     }
-// })
-
-
-
-// todo: 인증번호 확인 후 메세지, 버튼 
-
-function authComplete(){
-    if(true){// true 대신 인증번호 확인하는 함수 필요
-
-        blueBtn.forEach(v=>{
-            v.addEventListener('click',()=>{
-                v.classList.remove('blue-btn');
-                v.classList.add('item-2-btn');
-            })
-        })
-
+async function compareAuthCode(){
+    const phone = elements['phone'].value
+    const authCode = elements['auth-number-input'].value
+    
+    const data = await request(`/api/phone-auth?phone=${phone}&authCode=${authCode}`, 'GET');
+    const {success, message} = data
+    if(success){
+        elements['auth-number-input'].setAttribute('authed', 'true');
     }
-
+    else {
+        elements['auth-number-input'].setAttribute('authed', 'false');
+    }
 }
-authComplete();
+
+// 인증번호 생성 관련 모달 함수
+elements['phone-auth-btn'].addEventListener('click', requestAuthCode);
+elements['number-submit-btn'].addEventListener('click', compareAuthCode);
+
+

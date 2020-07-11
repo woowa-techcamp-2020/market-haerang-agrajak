@@ -33,6 +33,8 @@
     width:510px;
     height:220px;
 
+    font-size:20px;
+
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -40,14 +42,18 @@
 
 }
 
-.modal-content p{
-    margin:2em;
+.modal-content p:first-child{
     font-size:16px;
+    margin:0;
+}
 
+.modal-content p:nth-child(2){
+    margin:1em;
+    color:blue;
 }
 
 
-#close-modal-btn{
+#close-modal-btn,#close-detail-modal-btn{
     background:#1A7CFE;
     border:none;
     width:100px;
@@ -58,7 +64,7 @@
     transition:0.2s;
 }
 
-#close-modal-btn:hover{
+#close-modal-btn:hover,#close-detail-modal-btn:hover{
     width:105px;
     height:41px;
     font-size:16px;
